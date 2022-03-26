@@ -4,6 +4,12 @@
 
   let map;
 
+  function updateSize() {
+    if (map) {
+      map.invalidateSize();
+    }
+  }
+
   onMount(() => {
     map = L.map(document.querySelector(".map")).setView(
       [-2.9472475, 115.1483882],
@@ -16,6 +22,8 @@
     }).addTo(map);
   });
 </script>
+
+<svelte:window on:resize={updateSize} />
 
 <svelte:head>
   <link
