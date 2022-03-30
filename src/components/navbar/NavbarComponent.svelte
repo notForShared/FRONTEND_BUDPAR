@@ -1,19 +1,74 @@
-<nav class="flex justify-between px-4 my-3 w-full h-20">
-  <div class="flex __navbar-brand">
-    <img src="https://via.placeholder.com/150" alt="navbar-brand-1" />
+<script>
+  import { link } from "svelte-spa-router";
+  import WordIcon from "../../assets/svg/WordIcon.svelte";
+  import LoginIcon from "../../assets/svg/LoginIcon.svelte";
+  import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
+  import MenuBurgerIcon from "../../assets/svg/MenuBurgerIcon.svelte";
+</script>
+
+<nav class="flex justify-between px-6 md:px-8 lg:px-36 w-full h-32 __navbar">
+  <div class="flex items-center __navbar-brand">
     <img
-      src="https://via.placeholder.com/150"
-      class="pl-2"
+      src="/assets/logo/tapin.png"
+      class="w-16 h-16 hidden md:block"
       alt="navbar-brand-1"
     />
-    <div class="__brand-text pl-3 flex flex-col justify-center">
-      <h1 class="w-full block font-extrabold text-2xl">Dinas Pariwisata</h1>
-      <span class="w-full block font-extralight text-2xl">Kabupaten Tapin</span>
+    <img
+      src="/assets/logo/win.png"
+      class="w-auto h-16 hidden md:block pl-2"
+      alt="navbar-brand-1"
+    />
+    <div class="__brand-text flex flex-col justify-center">
+      <a href="/" use:link>
+        <h1 class="w-full block font-extrabold text-xl md:text-1xl lg:text-2xl">
+          Dinas Pariwisata
+        </h1>
+        <span
+          class="w-full block font-light lg:font-extralight md:text-xl lg:text-2xl"
+          >Kabupaten Tapin</span
+        >
+      </a>
     </div>
   </div>
-  <div class="__navbar-">
-    <ul>
-      <li>test</li>
-    </ul>
+
+  <div class="flex items-center md:hidden">
+    <a class="block md:hidden" href="#!">
+      <MenuBurgerIcon />
+    </a>
+  </div>
+
+  <div class="hidden md:flex md:items-center __navbar-button">
+    <a class="flex items-center px-6" href="#!">
+      <WordIcon />
+      <span class="pl-3">Places</span>
+    </a>
+    <a class="flex items-center pr-8 pl-6" href="#!">
+      <SearchDarkIcon />
+      <span class="pl-3">Search</span>
+    </a>
+    <a
+      class="flex items-center px-4 py-3 text-white font-bold rounded-md bg-[#00d6a1]"
+      href="#!"
+    >
+      <LoginIcon />
+      <span class="pl-3">Login</span>
+    </a>
   </div>
 </nav>
+
+<style>
+  .__navbar {
+    z-index: 999;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+  }
+
+  .__brand-text a h1,
+  .__brand-text a span {
+    line-height: 1.25 !important;
+  }
+</style>

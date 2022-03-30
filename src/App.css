@@ -5,3 +5,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* global css for icon */
+.__svg-icon {
+  display: inline-block !important;
+}

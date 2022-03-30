@@ -1,28 +1,31 @@
 <script>
   import NavbarComponent from "../../components/navbar/NavbarComponent.svelte";
+  import SliderComponent from "../../components/slider/SliderComponent.svelte";
 </script>
 
-<NavbarComponent />
-<div>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, minus ab
-  placeat corporis mollitia libero blanditiis dignissimos. Similique numquam
-  nemo iusto, eum a, id dolores quaerat eveniet minus odio nisi nulla? Quasi
-  tempore voluptatibus, commodi repellendus tenetur fugit, cum optio nobis
-  magnam error fugiat cupiditate earum! Nostrum dolorem, illo ea molestiae,
-  consectetur deleniti doloremque ipsa quibusdam accusamus officia voluptate
-  eius ducimus eveniet. Magnam dignissimos dicta quisquam praesentium nemo autem
-  qui saepe suscipit, nam nulla omnis vel minus, earum illo. Laborum, itaque
-  aspernatur? Distinctio unde ipsum tempore ducimus. Sunt, ratione voluptatem.
-  Eligendi aut nostrum quaerat a quasi eos officia, recusandae aliquam commodi,
-  tempora necessitatibus, hic obcaecati laboriosam. Reiciendis et laboriosam ea
-  beatae obcaecati quas deleniti repudiandae maxime quibusdam, facilis totam
-  soluta illo rerum doloribus. Voluptatum, perspiciatis veritatis! Corrupti
-  repellat amet doloribus culpa quos perspiciatis beatae animi nam a libero eius
-  provident assumenda debitis aliquam accusamus, eligendi non sed? Distinctio,
-  nam. Quidem autem quisquam esse omnis possimus nemo? Voluptatibus, suscipit
-  blanditiis quae voluptates culpa natus dolor consectetur cupiditate amet eum
-  fugiat nesciunt repellendus eligendi aut illo obcaecati, repellat debitis
-  nihil accusamus sequi. Sit suscipit fuga delectus expedita aperiam maiores
-  sequi provident veritatis saepe nulla nobis, sapiente impedit? Quas quasi
-  sapiente officiis molestias?
+<div class="__content w-full h-screen">
+  <NavbarComponent />
+  <SliderComponent />
+  <div>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati eaque,
+    voluptates reiciendis nemo mollitia in eius temporibus, voluptatem cumque
+    repudiandae iusto labore deserunt quo et magnam incidunt est, amet officia
+    voluptatibus exercitationem? Facere saepe nostrum, hic non pariatur dolore
+    ipsam modi cupiditate explicabo autem deserunt tenetur quis necessitatibus
+    sunt accusamus at voluptate. Ad ducimus modi non quia ipsa expedita et
+    numquam nemo illum, sed consectetur itaque accusantium obcaecati, ea labore
+    natus nesciunt reprehenderit sint deserunt impedit quaerat eum. Voluptate
+    fugit consectetur odit molestias reiciendis eligendi quis qui harum ex
+    aliquid, sit nam id natus atque, error a excepturi illo maxime nesciunt
+    similique fuga, saepe rem distinctio neque? Illo atque non velit fugit totam
+    ducimus nemo quibusdam beatae veritatis sint esse, laudantium recusandae
+    provident! Ut necessitatibus distinctio id dicta aspernatur, dolorum vitae
+    dolores nulla possimus voluptatum doloribus fuga porro iusto cupiditate
+    dignissimos quisquam perferendis tempore sit mollitia illum ad atque,
+    corporis excepturi error. Libero, sit? Iusto provident totam laboriosam
+    quaerat, porro ad ratione pariatur libero soluta similique nam! Qui aut
+    libero tempore! Dolorem, illo. Ipsum nobis accusantium quo iste expedita
+    tenetur delectus? Odit, explicabo. Sunt, asperiores fuga qui ducimus, error
+    laudantium, ut quis quidem quae aperiam inventore dolor in! Ex, sed.
+  </div>
 </div>
