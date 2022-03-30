@@ -30,6 +30,8 @@
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   />
+
+  <title>home</title>
 </svelte:head>
 
 <div class="w-3/6 drop-shadow-md rounded">

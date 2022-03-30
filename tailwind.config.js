@@ -3,6 +3,11 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Raleway', 'sans-serif']
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',
