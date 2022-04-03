@@ -54,6 +54,26 @@
   ];
 </script>
 
+<!-- meta tag for SEO -->
+<svelte:head>
+  <title>Halaman Utama | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title>
+  <meta
+    name="description"
+    content="Halaman utama website Dinas Kebudayaan dan Pariwisata Kabupaten Tapin "
+  />
+  <meta
+    name="keywords"
+    content="disbudpar kab tapin, disbudpar tapin, dinas kebudayaan, disbud tapin"
+  />
+  <meta
+    name="author"
+    content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="http://localhost:3000/#/" />
+</svelte:head>
+<!-- meta tag for SEO -->
+
 <div in:fade={{ duration: 500 }}>
   <div class="relative">
     <SliderComponent />
