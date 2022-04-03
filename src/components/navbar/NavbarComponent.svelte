@@ -6,7 +6,9 @@
   import MenuBurgerIcon from "../../assets/svg/MenuBurgerIcon.svelte";
 </script>
 
-<nav class="flex justify-between px-6 md:px-8 lg:px-36 w-full h-32 __navbar">
+<nav
+  class="flex absolute justify-between px-6 md:px-8 lg:px-36 w-full h-32 __navbar"
+>
   <div class="flex items-center __navbar-brand">
     <img
       src="/assets/logo/tapin.png"
