@@ -9,6 +9,8 @@
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
 
+  import { BASEURI } from "../../lib/config";
+
   let tourObject = [
     {
       imageUrl: "/assets/images/dummy/aaron-thomas-4CHdH9cMr0E-unsplash.png",
@@ -70,7 +72,7 @@
     content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="http://localhost:3000/#/" />
+  <link rel="canonical" href={`${BASEURI}#/`} />
 </svelte:head>
 <!-- meta tag for SEO -->
 

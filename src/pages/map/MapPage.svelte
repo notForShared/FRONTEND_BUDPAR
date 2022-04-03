@@ -1,6 +1,8 @@
 <script>
-  import MapComponent from "../../components/map/MapComponent.svelte";
   import { fade } from "svelte/transition";
+
+  import MapComponent from "../../components/map/MapComponent.svelte";
+  import { BASEURI } from "../../lib/config";
 </script>
 
 <!-- meta tag for SEO -->
@@ -19,7 +21,7 @@
     content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="http://localhost:3000/#/map" />
+  <link rel="canonical" href={`${BASEURI}#/map`} />
 </svelte:head>
 <!-- meta tag for SEO -->
 
