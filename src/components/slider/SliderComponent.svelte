@@ -13,7 +13,7 @@
         class="flex flex-col justify-center items-center absolute inset-0 w-full h-auto"
       >
         <h2
-          class="uppercase tracking-[.5em] text-white text-md lf:text-3xl lg:mb-5"
+          class="uppercase tracking-[.5em] text-white text-md lg:text-3xl lg:mb-5"
         >
           jelajahi
         </h2>
