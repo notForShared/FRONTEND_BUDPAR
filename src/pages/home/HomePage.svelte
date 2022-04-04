@@ -1,7 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
 
-  import SidebarButtonComponent from "../../components/floatingbutton/SidebarButtonComponent.svelte";
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
   import ActivityCardComponent from "../../components/card/ActivityCardComponent.svelte";
@@ -103,7 +102,6 @@
     <SliderComponent />
     <SearchCardComponent />
     <MapButtonComponent />
-    <SidebarButtonComponent />
   </div>
   <div
     class="content __tour-object pt-5 lg:pt-[11rem] pb-[5rem] px-[2rem] lg:px-[7rem]"
