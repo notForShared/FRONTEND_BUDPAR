@@ -21,7 +21,7 @@
     </p>
     <div class="__card-link w-full h-auto text-center pb-5">
       <a
-        class="border-2 px-[4rem] py-[10px] rounded-[14px] border-[#00d6a1] text-[#00d6a1] font-semibold"
+        class="border-2 px-[2rem] md:px-[4rem] py-[10px] rounded-[14px] border-[#00d6a1] text-[#00d6a1] font-semibold"
         href="#!">Baca Selengkapnya</a
       >
     </div>
