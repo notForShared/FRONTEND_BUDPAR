@@ -1,9 +1,9 @@
 <script>
   import { link } from "svelte-spa-router";
+
   import WordIcon from "../../assets/svg/WordIcon.svelte";
   import LoginIcon from "../../assets/svg/LoginIcon.svelte";
   import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
-  import MenuBurgerIcon from "../../assets/svg/MenuBurgerIcon.svelte";
 </script>
 
 <nav
@@ -31,12 +31,6 @@
         >
       </a>
     </div>
-  </div>
-
-  <div class="flex items-center md:hidden">
-    <a class="block md:hidden" href="#!">
-      <MenuBurgerIcon />
-    </a>
   </div>
 
   <div class="hidden md:flex md:items-center __navbar-button">

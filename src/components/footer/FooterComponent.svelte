@@ -1,26 +1,120 @@
+<script>
+  import FooterInstagramIcon from "../../assets/svg/FooterInstagramIcon.svelte";
+  import FooterFacebookIcon from "../../assets/svg/FooterFacebookIcon.svelte";
+  import FooterAddressIcon from "../../assets/svg/FooterAddressIcon.svelte";
+  import FooterYoutubeIcon from "../../assets/svg/FooterYoutubeIcon.svelte";
+  import FooterTwitterIcon from "../../assets/svg/FooterTwitterIcon.svelte";
+
+  import FooterEmailIcon from "../../assets/svg/FooterEmailIcon.svelte";
+  import FooterPhoneIcon from "../../assets/svg/FooterPhoneIcon.svelte";
+  import FooterWebIcon from "../../assets/svg/FooterWebIcon.svelte";
+</script>
+
 <div class="__footer">
-  <div class="border-y px-10 lg:px-36 py-5 border-[#e6e6e6]">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur itaque
-    pariatur totam et deleniti asperiores amet temporibus! Corrupti fuga,
-    laboriosam aspernatur minima corporis ipsam id, tempore quisquam rerum
-    commodi aliquam adipisci maiores nemo atque suscipit est accusamus odit
-    perferendis fugiat? Delectus, aspernatur commodi placeat laborum distinctio
-    nostrum cumque dicta rem quisquam tenetur animi debitis cupiditate
-    repudiandae obcaecati sapiente laudantium iusto magnam iste ducimus ab esse
-    eos quis quaerat optio? Beatae cum cupiditate enim itaque nemo optio
-    accusantium temporibus sunt? Natus optio odio repellendus dignissimos
-    consequatur voluptatibus mollitia et a harum illum sit facilis veritatis
-    dolore sunt, accusamus nostrum laborum repudiandae hic quos quod officiis
-    vero quasi! Aperiam ea iste nostrum! Maxime dolores, qui aliquam quae vero
-    itaque, nisi aliquid a deleniti non ad, repellendus commodi voluptate
-    pariatur ipsum labore doloremque quas architecto voluptatibus modi
-    perferendis atque sit minima. Tenetur, exercitationem excepturi eius est
-    error quis dolorum iste delectus quas veritatis molestiae accusantium nisi
-    cumque fugiat officia voluptatum voluptatibus sit dolores, suscipit impedit
-    ipsum ab magni placeat libero? Quod at ullam, ad quisquam minus quia
-    incidunt alias magni aliquid non. Corporis autem in eius non ex repudiandae
-    labore ipsum repellat, accusamus quia temporibus nemo soluta accusantium
-    dignissimos corrupti nihil quasi nostrum.
+  <div class="border-y px-10 lg:px-36 py-12 border-[#e6e6e6]">
+    <div
+      class="__footer-wrapper grid gap-y-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-[#6e7074]"
+    >
+      <!-- info -->
+      <div class="w-full text-center pt-12 md:pt-0 md:text-left">
+        <h1 class="text-3xl font-bold capitalize">dinas pariwisata</h1>
+        <h3 class="text-2xl capitalize">Kabupaten Tapin</h3>
+        <div
+          class="__office-address pt-3 flex items-center justify-center md:justify-start"
+        >
+          <FooterAddressIcon />
+          <div class="flex flex-col pl-4">
+            <span>JL. Jendral Sudirman No. 89</span>
+            <span>Tapin Utara, Kabupaten Tapin</span>
+            <span>Kalimantan Selatan, 71152</span>
+          </div>
+        </div>
+      </div>
+      <!-- info -->
+
+      <!-- contact -->
+      <div class="w-full text-center pt-12 md:pt-0 md:text-left">
+        <span class="text-2xl font-bold capitalize">Kontak Kami</span>
+        <div
+          class="__contact-info pt-3 flex flex-col items-center md:items-start"
+        >
+          <div class="__phone flex items-center">
+            <FooterPhoneIcon />
+            <span class="bg-slate-300 rounded px-[3px] ml-2 cursor-pointer">
+              (0517) 32016
+            </span>
+          </div>
+          <div class="__email flex items-center pt-2">
+            <FooterEmailIcon />
+            <a
+              class="capitalize ml-2 hover:underline"
+              href="mailto:disbudpar.tapinkab.go.id"
+            >
+              disbudpar.go.id
+            </a>
+          </div>
+          <div class="__site flex items-center pt-2">
+            <FooterWebIcon />
+            <a
+              class="ml-2 hover:underline"
+              href="https://disbudpar.tapinkab.go.id"
+            >
+              www.disbudpar.tapinkab.go.id
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- contact -->
+
+      <!-- social media -->
+      <div class="w-full text-center md:text-left lg:text-center pt-12 md:pt-0">
+        <span class="text-2xl font-bold capitalize">Sosial Media</span>
+        <div
+          class="__social-media-list flex justify-center md:justify-start lg:justify-center pt-5"
+        >
+          <div class="__twitter px-3">
+            <a href="#!">
+              <FooterTwitterIcon />
+            </a>
+          </div>
+          <div class="__facebook px-3">
+            <a href="#!">
+              <FooterFacebookIcon />
+            </a>
+          </div>
+          <div class="__youtube px-3">
+            <a href="#!">
+              <FooterYoutubeIcon />
+            </a>
+          </div>
+          <div class="__instagram px-3">
+            <a href="#!">
+              <FooterInstagramIcon />
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- social media -->
+
+      <!-- logo -->
+      <div class="w-full pt-12 md:pt-0">
+        <div
+          class="__logo-wrapper flex justify-center md:justify-start lg:justify-center"
+        >
+          <img
+            class="w-20 h-auto"
+            src="/assets/logo/tapin.png"
+            alt="footer logo kab. tapin"
+          />
+          <img
+            class="w-32 h-auto ml-7"
+            src="/assets/logo/win.png"
+            alt="footer logo wonderful indonesia"
+          />
+        </div>
+      </div>
+      <!-- logo -->
+    </div>
   </div>
   <div class="__copyright text-center py-3">
     <div class="text-[13px] capitalize text-[#6e7074]">

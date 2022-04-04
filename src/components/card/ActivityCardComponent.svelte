@@ -1,23 +1,29 @@
-<div>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero earum officiis
-  doloribus eaque hic quis tempore, deserunt nulla. Maxime eaque aut soluta,
-  earum, fugit quod libero repellat inventore quaerat provident aperiam et
-  cupiditate sequi, repudiandae maiores debitis. Ut minima labore repellat minus
-  exercitationem nulla, atque ipsam unde non excepturi! Nisi quidem molestiae
-  doloremque nemo assumenda et corrupti repellat! Nemo, voluptates ducimus eum
-  soluta animi repellendus labore, ipsam numquam nisi quis earum assumenda
-  impedit dicta tempora. Excepturi error voluptas eveniet ex exercitationem illo
-  quasi, dolorem reprehenderit consequatur aliquam? Sapiente odit culpa odio,
-  reprehenderit vero alias excepturi nulla dignissimos, dolores temporibus
-  asperiores maiores dicta ipsa! Suscipit eveniet sunt odio sed fugit fuga
-  officiis ipsa repellendus eum corrupti accusantium, quod beatae corporis
-  fugiat in tempore libero nostrum vitae. Aspernatur at voluptate ullam
-  doloremque impedit quas, necessitatibus sint qui sed aliquid ipsum animi nihil
-  possimus dolor officia laudantium recusandae fugiat cupiditate quia deleniti
-  ratione temporibus repudiandae nemo similique. Ipsam, tempora quaerat minus
-  nulla reiciendis nihil doloremque magnam? Perferendis reiciendis veniam
-  praesentium saepe quaerat eum amet quidem molestiae! Quo quam fuga facere
-  nobis doloribus beatae saepe nesciunt? Veniam facilis reprehenderit fuga,
-  aliquid beatae delectus voluptates explicabo similique doloremque earum magni.
-  Expedita blanditiis quisquam ex ullam.
+<div
+  class="__activity-card duration-300 shadow hover:shadow-lg rounded-[11px] mx-[20px]"
+>
+  <div class="__card-image">
+    <img
+      class="w-full h-[300px] lg:h-[230px] object-cover rounded-t-[11px]"
+      src="/assets/images/dummy/nick-rickert-qx3ZAL-gYjY-unsplash.png"
+      alt="berita a"
+    />
+  </div>
+  <div class="__card-body px-5 py-6">
+    <h1 class="__card-title capitalize font-bold text-xl pb-[1rem]">
+      Lorem, ipsum dolor.
+    </h1>
+    <span class="text-sky-700">22 Februari 2022</span>
+    <p class="text-gray-400 pt-[1.5rem] pb-[2rem]">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias magni
+      veniam nihil voluptatem soluta aliquam velit, quos laborum ut fuga
+      laudantium architecto repellendus doloribus, illum autem commodi. Quod,
+      quis corrupti.
+    </p>
+    <div class="__card-link w-full h-auto text-center pb-5">
+      <a
+        class="border-2 px-[2rem] md:px-[4rem] py-[10px] rounded-[14px] border-[#00d6a1] text-[#00d6a1] font-semibold"
+        href="#!">Baca Selengkapnya</a
+      >
+    </div>
+  </div>
 </div>

@@ -1,13 +1,16 @@
 <script>
   import { fade } from "svelte/transition";
 
+  import SidebarButtonComponent from "../../components/floatingbutton/SidebarButtonComponent.svelte";
+  import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
-  import MapButtonComponent from "../../components/mapbutton/MapButtonComponent.svelte";
   import ActivityCardComponent from "../../components/card/ActivityCardComponent.svelte";
   import NewsCardComponent from "../../components/card/NewsCardComponent.svelte";
   import SliderComponent from "../../components/slider/SliderComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
+
+  import { BASEURI } from "../../lib/config";
 
   let tourObject = [
     {
@@ -52,13 +55,55 @@
       tourAddress: "lokpaikat, Kabupaten Tapin",
     },
   ];
+
+  let news = [
+    {
+      title: "asd",
+      image: "asd",
+      desc: "asd",
+      readMore: "asd",
+    },
+    {
+      title: "asd",
+      image: "asd",
+      desc: "asd",
+      readMore: "asd",
+    },
+    {
+      title: "asd",
+      image: "asd",
+      desc: "asd",
+      readMore: "asd",
+    },
+  ];
 </script>
+
+<!-- meta tag for SEO -->
+<svelte:head>
+  <title>Halaman Utama | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title>
+  <meta
+    name="description"
+    content="Halaman utama website Dinas Kebudayaan dan Pariwisata Kabupaten Tapin "
+  />
+  <meta
+    name="keywords"
+    content="disbudpar kab tapin, disbudpar tapin, dinas kebudayaan, disbud tapin"
+  />
+  <meta
+    name="author"
+    content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={`${BASEURI}#/`} />
+</svelte:head>
+<!-- meta tag for SEO -->
 
 <div in:fade={{ duration: 500 }}>
   <div class="relative">
     <SliderComponent />
     <SearchCardComponent />
     <MapButtonComponent />
+    <SidebarButtonComponent />
   </div>
   <div
     class="content __tour-object pt-5 lg:pt-[11rem] pb-[5rem] px-[2rem] lg:px-[7rem]"
@@ -95,7 +140,11 @@
       <h1 class="font-bold text-3xl pb-2">Kabar Berita</h1>
       <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
       <div class="pt-10 pb-32">
-        <NewsCardComponent />
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
+          {#each news as news}
+            <NewsCardComponent {...news} />
+          {/each}
+        </div>
       </div>
     </div>
 
@@ -103,7 +152,11 @@
       <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
       <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
       <div class="pt-10 pb-32">
-        <ActivityCardComponent />
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
+          {#each news as news}
+            <ActivityCardComponent {...news} />
+          {/each}
+        </div>
       </div>
     </div>
   </div>
