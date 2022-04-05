@@ -1,6 +1,16 @@
 <script>
+  import { push } from "svelte-spa-router";
   import MapPinHollowIcon from "../../assets/svg/MapPinHollowIcon.svelte";
   import SearchLightIcon from "../../assets/svg/SearchLightIcon.svelte";
+
+  let searchQuery;
+
+  function gotoContent() {
+    if (searchQuery || searchQuery !== "") {
+      let query = new URLSearchParams({ q: searchQuery });
+      push(`/content?${query}`);
+    }
+  }
 </script>
 
 <div class="__search-card flex justify-center w-full py-10 lg:absolute lg:pb-5">
@@ -17,9 +27,11 @@
       <input
         class="border-2 bg-[#f5f5f5] border-[#00d6a1] rounded-lg h-10 w-11/12 px-2"
         type="text"
+        bind:value={searchQuery}
       />
       <button
         class="flex items-center ml-2 mt-5 md:mt-0 px-2 py-2 text-white font-bold rounded-md bg-[#00d6a1]"
+        on:click={gotoContent}
       >
         <SearchLightIcon />
         <span class="pl-2">Cari</span>

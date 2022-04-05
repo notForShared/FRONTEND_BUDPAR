@@ -10,3 +10,20 @@
 .__svg-icon {
   display: inline-block !important;
 }
+
+.__slot-wrapper {
+  display: inherit !important;
+}
+
+.__sidebar-item-icon {
+  display: inherit !important;
+}
+
+.__marker {
+  width: 42px !important;
+}
+
+/* forcing leaflet to center popup */
+.leaflet-popup {
+  left: -40px !important;
+}
