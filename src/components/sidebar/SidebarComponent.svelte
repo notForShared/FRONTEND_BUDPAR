@@ -41,7 +41,7 @@
           <a
             class="__sidebar-item flex items-center py-4 w-full duration-300 border-b-[1px] hover:bg-[#e0e0e0]"
             href="#!"
-            on:click|preventDefault={() => goHere("asd")}
+            on:click|preventDefault={() => goHere("tour-list")}
           >
             <div class="__sidebar-item-icon pl-5">
               <WordIcon />

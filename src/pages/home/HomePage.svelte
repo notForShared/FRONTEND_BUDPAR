@@ -1,4 +1,5 @@
 <script>
+  import { link } from "svelte-spa-router";
   import { fade } from "svelte/transition";
 
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
@@ -110,7 +111,7 @@
     <h1 class="font-bold text-3xl pb-8">Wisata Top Pencarian</h1>
 
     <div
-      class="grid grid-cols-1 md:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
     >
       {#each tourObject as object}
         <TourContentCard {...object} />
@@ -118,9 +119,9 @@
     </div>
     <div class="text-center">
       <a
-        href="#!"
+        href="/tour-list"
         class="border-2 rounded-full border-[#00d6a1] bg-white text-[#00d6a1] font-bold px-5 py-3 duration-500 hover:text-white hover:border-[#e0e0e0] hover:bg-[#00d6a1]"
-        >Lihat Selengkapnya</a
+        use:link>Lihat Selengkapnya</a
       >
     </div>
   </div>
