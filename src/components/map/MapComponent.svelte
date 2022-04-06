@@ -114,6 +114,6 @@
   <title>home</title>
 </svelte:head>
 
-<div class="w-full drop-shadow-md rounded">
-  <div class="map h-screen rounded" />
+<div class="w-full">
+  <div class="map h-screen" />
 </div>

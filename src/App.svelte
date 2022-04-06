@@ -9,7 +9,7 @@
 
 <main class="w-full relative">
   <NavbarComponent />
-  <Router {routes} />
+  <Router {routes} restoreScrollState={true} />
   <SidebarButtonComponent />
 
   <SidebarComponent />
