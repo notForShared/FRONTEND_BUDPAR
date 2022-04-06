@@ -29,7 +29,8 @@
 }
 
 @media (max-width: 640px) {
-  .leaflet-bottom.leaflet-right {
+  .leaflet-bottom.leaflet-right,
+  .leaflet-top.leaflet-left {
     z-index: 998 !important;
   }
 }
