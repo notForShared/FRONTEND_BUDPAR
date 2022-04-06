@@ -1,3 +1,7 @@
+<script>
+  import { link } from "svelte-spa-router";
+</script>
+
 <div
   class="__news-card duration-300 shadow hover:shadow-lg rounded-[11px] mx-[20px]"
 >
@@ -22,7 +26,11 @@
     <div class="__card-link w-full h-auto text-center pb-5">
       <a
         class="border-2 px-[2rem] md:px-[4rem] py-[10px] rounded-[14px] border-[#00d6a1] text-[#00d6a1] font-semibold"
-        href="#!">Baca Selengkapnya</a
+        href="/content?{new URLSearchParams({
+          type: 'news',
+          q: 'asd',
+        }).toString()}"
+        use:link>Baca Selengkapnya</a
       >
     </div>
   </div>

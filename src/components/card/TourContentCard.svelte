@@ -1,4 +1,5 @@
 <script>
+  import { link } from "svelte-spa-router";
   import MapPinFillIcon from "../../assets/svg/MapPinFillIcon.svelte";
 
   export let imageUrl;
@@ -8,7 +9,13 @@
 
 <div class="__tour-content-card mx-auto">
   <div class="__tour-object-card-wrapper relative">
-    <a href="#!">
+    <a
+      href="/content?{`${new URLSearchParams({
+        type: 'tourism',
+        q: tourTitle,
+      }).toString()}`}"
+      use:link
+    >
       <img
         src={imageUrl}
         alt="tour object"

@@ -1,3 +1,4 @@
-export const API = 'https://disbudpar.caj16.masuk.id/api/v1'
-export const ASSETS = 'https://disbudpar.caj16.masuk.id/storage'
-export const BASEURI = 'http://localhost:3000/'
+export const API = 'https://admin.demopaariwisata.tapinkab.go.id/api/v1'
+export const ASSETS = 'https://admin.demopaariwisata.tapinkab.go.id/storage'
+export const BASEURI = 'http://localhost/'
+export const ADMINPAGE = 'https://'

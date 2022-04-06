@@ -10,6 +10,10 @@ export const routes = {
     asyncComponent: () => import('./map/MapPage.svelte')
   }),
 
+  "/tour-list": wrap({
+    asyncComponent: () => import('./tour/TourListPage.svelte')
+  }),
+
   "/content": wrap({
     asyncComponent: () => import('./content/ContentPage.svelte')
   }),
