@@ -1,9 +1,10 @@
 <script>
   import { link } from "svelte-spa-router";
+  import {} from "../../lib/config";
 
-  import WordIcon from "../../assets/svg/WordIcon.svelte";
-  import LoginIcon from "../../assets/svg/LoginIcon.svelte";
   import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
+  import LoginIcon from "../../assets/svg/LoginIcon.svelte";
+  import WordIcon from "../../assets/svg/WordIcon.svelte";
 </script>
 
 <nav
@@ -34,7 +35,7 @@
   </div>
 
   <div class="hidden md:flex md:items-center __navbar-button">
-    <a class="flex items-center px-6" href="#!">
+    <a class="flex items-center px-6" href="/tour-list" use:link>
       <WordIcon />
       <span class="pl-3">Places</span>
     </a>
@@ -44,7 +45,8 @@
     </a>
     <a
       class="flex items-center px-4 py-3 text-white font-bold rounded-md bg-[#00d6a1]"
-      href="#!"
+      href="https://admin.demopaariwisata.tapinkab.go.id/"
+      target="_blank"
     >
       <LoginIcon />
       <span class="pl-3">Login</span>

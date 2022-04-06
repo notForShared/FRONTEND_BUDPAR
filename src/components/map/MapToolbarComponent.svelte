@@ -21,7 +21,7 @@
     on:click={backToHome}
   >
     <ChevronLeftIcon />
-    <span class="pl-3">Home</span>
+    <span class="pl-3">Back</span>
   </button>
   <button
     class="rounded-[7px] drop-shadow bg-white font-semibold flex text-black ml-5 px-6 py-[.4rem] capitalize text-[14px]"

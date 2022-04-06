@@ -10,7 +10,21 @@
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
 
-  import { BASEURI } from "../../lib/config";
+  import { BASEURI, API, ASSETS } from "../../lib/config";
+
+  // async function fetchData() {
+  //   let tourAttraction = await fetch(`${API}/tourist-attractions`);
+  //   let news = await fetch(`${API}/articles`);
+
+  //   if (tourAttraction.status === 200 && news.status === 200) {
+  //     let tourAttractionData = await tourAttraction.json();
+  //     let newsData = await news.json();
+
+  //     console.log(tourAttractionData.data.data);
+  //   }
+  // }
+
+  // fetchData();
 
   let tourObject = [
     {

@@ -6,6 +6,11 @@
 
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
+
+  import PhoneCircleGreenIcon from "../../assets/svg/PhoneCircleGreenIcon.svelte";
+  import WorldCircleGreenIcon from "../../assets/svg/WorldCircleGreenIcon.svelte";
+  import ClockCircleGreenIcon from "../../assets/svg/ClockCircleGreenIcon.svelte";
+  import PinCircleGreenIcon from "../../assets/svg/PinCircleGreenIcon.svelte";
   import MapFoldIcon from "../../assets/svg/MapFoldIcon.svelte";
   import FlyIcon from "../../assets/svg/FlyIcon.svelte";
 
@@ -43,6 +48,7 @@
 </script>
 
 <svelte:head>
+  <!-- svelte-ignore component-name-lowercase -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -163,6 +169,40 @@
         <FlyIcon />
         <span class="text-white pl-5">Open Map</span>
       </a>
+
+      <div class="__content-info mt-6 pt-5 border-t">
+        <div class="__address flex items-center">
+          <PinCircleGreenIcon />
+          <div class="__address-text pl-3">
+            <h3 class="font-bold">Alamat</h3>
+            <span>Binuang, Tapin Regency, Kab Tapin</span>
+          </div>
+        </div>
+        <div class="__open-hours flex items-center pt-5">
+          <ClockCircleGreenIcon />
+          <div class="__open-hours-text pl-3">
+            <h3 class="font-bold">Waktu buka</h3>
+            <span>24 Jam (Terkecuali libur keagamaan)</span>
+          </div>
+        </div>
+        <div class="__contact-person flex items-center pt-5">
+          <PhoneCircleGreenIcon />
+          <div class="__contact-person-text pl-3">
+            <h3 class="font-bold">Telepon</h3>
+            <span>(0125) 435667</span>
+          </div>
+        </div>
+
+        <div class="__affiliated-web flex items-center pt-5">
+          <WorldCircleGreenIcon />
+          <div class="__affiliated-web-text pl-3">
+            <h3 class="font-bold">Website</h3>
+            <a class="underline" href="https://www.johndoe.com/" target="_blank"
+              >www.johndoe.com</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -176,7 +216,7 @@
 
       <TabPanel>
         <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
         >
           {#each relatedPlaces as object}
             <TourContentCard {...object} />
@@ -186,7 +226,7 @@
 
       <TabPanel>
         <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
         >
           {#each relatedPlaces as object}
             <TourContentCard {...object} />
@@ -197,7 +237,7 @@
       <TabPanel>
         <div>
           <div
-            class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+            class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
           >
             {#each relatedPlaces as object}
               <TourContentCard {...object} />

@@ -1,5 +1,5 @@
 <script>
-  import { push } from "svelte-spa-router";
+  import { pop } from "svelte-spa-router";
   import { onMount } from "svelte";
   import L from "leaflet";
 
@@ -60,7 +60,7 @@
       });
 
       toolbarComponent.$on("back-to-list", () => {
-        push("/");
+        pop();
       });
 
       toolbarComponent.$on("map-filter", () => {

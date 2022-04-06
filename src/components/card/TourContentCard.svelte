@@ -10,7 +10,10 @@
 <div class="__tour-content-card mx-auto">
   <div class="__tour-object-card-wrapper relative">
     <a
-      href="/content?{`${new URLSearchParams({ q: tourTitle }).toString()}`}"
+      href="/content?{`${new URLSearchParams({
+        type: 'tourism',
+        q: tourTitle,
+      }).toString()}`}"
       use:link
     >
       <img
