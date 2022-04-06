@@ -94,6 +94,8 @@
     content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta name="robots" content="index, follow" />
+
+  <!-- svelte-ignore component-name-lowercase -->
   <link rel="canonical" href={`${BASEURI}#/`} />
 </svelte:head>
 <!-- meta tag for SEO -->

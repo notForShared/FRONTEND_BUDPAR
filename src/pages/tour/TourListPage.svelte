@@ -47,6 +47,26 @@
       tourAddress: "lokpaikat, Kabupaten Tapin",
     },
   ];
+
+  let relatedPlaces = [
+    {
+      imageUrl: "/assets/images/dummy/neonbrand-iAftdIcgpFc-unsplash 1.png",
+      tourTitle: "wisata religi datu kabul",
+      tourAddress: "cls, Kabupaten Tapin",
+    },
+    {
+      imageUrl:
+        "/assets/images/dummy/francesca-tosolini-w1RE0lBbREo-unsplash.png",
+      tourTitle: "wisata bukit buluan",
+      tourAddress: "binuang, kabupaten tapin",
+    },
+    {
+      imageUrl:
+        "/assets/images/dummy/christopher-jolly-GqbU78bdJFM-unsplash.png",
+      tourTitle: "wisata religi datu nurraya",
+      tourAddress: "Tatakan, Kabupaten Tapin",
+    },
+  ];
 </script>
 
 <div class="__content-page-tour" in:fade={{ duration: 500 }}>
@@ -94,85 +114,34 @@
       </TabList>
 
       <TabPanel>
-        <div>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis
-          error sint fugit quia explicabo. Error quasi, porro similique saepe
-          non laborum libero vero ea magnam itaque. Molestias voluptas quidem
-          accusantium sed. Itaque quo nobis maiores laudantium modi veniam
-          voluptates aliquam nemo deserunt, eos exercitationem commodi ad quia,
-          minima, praesentium doloremque excepturi sapiente possimus. Laborum
-          praesentium rerum laboriosam, ab et iusto dicta dolores ullam
-          temporibus facilis! Facilis perspiciatis, sunt aliquid necessitatibus
-          facere, natus quae quia explicabo aperiam fuga ipsum. Hic, repudiandae
-          tempora tenetur delectus expedita necessitatibus veritatis consequatur
-          saepe deleniti ducimus dolorum, minima ipsam atque culpa placeat
-          doloremque corrupti quis unde! Quasi atque aspernatur blanditiis eius
-          recusandae. Atque placeat dignissimos nostrum laudantium ipsam, enim
-          harum voluptate. Qui perspiciatis ducimus nihil nesciunt expedita
-          blanditiis ea doloremque eveniet! Consectetur, porro! Repellat
-          accusantium sed unde libero modi voluptatem quos aliquam ratione odit
-          possimus enim alias quibusdam quasi fugit quo necessitatibus corporis
-          illum cumque quam, autem ut eos aspernatur. Cupiditate ipsum enim,
-          quae aperiam quaerat modi sed, similique delectus dolorem temporibus
-          corrupti illum suscipit consequatur alias eaque laudantium reiciendis
-          maxime quas dolores aspernatur labore laborum ipsa? Quas natus quos ut
-          aspernatur iste sed sit, itaque ipsam possimus animi. Animi culpa quae
-          ab itaque, suscipit velit.
+        <div
+          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+        >
+          {#each relatedPlaces as object}
+            <TourContentCard {...object} />
+          {/each}
+        </div>
+      </TabPanel>
+
+      <TabPanel>
+        <div
+          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+        >
+          {#each relatedPlaces as object}
+            <TourContentCard {...object} />
+          {/each}
         </div>
       </TabPanel>
 
       <TabPanel>
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit
-          eius cum vel. Impedit incidunt labore nam illum alias ea numquam
-          adipisci, totam voluptatum soluta, non assumenda vero perferendis esse
-          fuga quo, tenetur autem voluptates tempora blanditiis accusantium
-          provident culpa? Corrupti nesciunt vitae temporibus dolores,
-          reprehenderit iusto, dolor libero perferendis cumque consectetur natus
-          autem saepe laborum iste aperiam culpa excepturi. Voluptatibus facere
-          aperiam magnam fugit quisquam quae porro quam omnis natus, repudiandae
-          accusantium illo culpa in perspiciatis itaque optio animi a sapiente
-          impedit hic possimus? Debitis iusto quo nesciunt, atque animi nemo
-          illum reiciendis? Sint ullam sapiente ut aut impedit officia
-          perspiciatis, suscipit nulla culpa, eius reprehenderit pariatur id
-          rerum doloremque incidunt illo odio tempore laboriosam velit possimus.
-          Perferendis soluta ducimus sapiente ipsa! Labore fuga aperiam tempore
-          quaerat animi est, sit autem assumenda? Quisquam iusto velit est
-          itaque, sed facere pariatur eligendi laboriosam vitae, ab ducimus eos!
-          Sunt magnam inventore possimus, iste eum illum nam temporibus ex est
-          ut ullam repellat et fugit laborum asperiores ipsam labore facere
-          reprehenderit quis beatae dignissimos reiciendis debitis molestias.
-          Laboriosam iste omnis, dolor molestiae dolores voluptates quo
-          perferendis reiciendis ipsam nam laudantium velit quidem debitis error
-          quos quas eligendi iusto tenetur similique et aliquam. Numquam.
-        </div>
-      </TabPanel>
-
-      <TabPanel>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-          vel autem natus obcaecati, consequuntur earum, alias est praesentium
-          omnis rem velit, commodi quod quae iusto reprehenderit non
-          perspiciatis explicabo sapiente eveniet rerum ipsa architecto.
-          Voluptatem, ducimus! Voluptas soluta expedita animi qui amet minus
-          error nobis illum iure delectus, maiores pariatur est autem, ipsum
-          dolore nihil saepe rerum dicta impedit harum ducimus mollitia.
-          Sapiente, autem nostrum repellendus exercitationem fugit, dolorem
-          maxime vel esse culpa impedit neque cum iste molestias, consequatur
-          officiis laboriosam. Esse corrupti molestias libero temporibus cum eum
-          neque ipsum nostrum et ducimus quod sapiente veniam aperiam, porro
-          saepe blanditiis autem, facere deleniti impedit maxime laboriosam id
-          enim. Debitis pariatur harum voluptatum consectetur aspernatur
-          officiis hic ipsum eius, aperiam dicta? Perspiciatis culpa natus non
-          totam modi! Magni quaerat, recusandae quam aliquid vel sunt deserunt
-          inventore! Culpa, assumenda iusto enim dignissimos quis necessitatibus
-          officiis atque perspiciatis odio. Dignissimos consequuntur modi
-          architecto impedit doloremque fugit enim eaque voluptatibus sunt harum
-          necessitatibus quasi, quam natus explicabo quidem ab id. Obcaecati,
-          temporibus. Quis vero, laboriosam distinctio porro quam dolorem,
-          mollitia non consectetur sint ea tempora praesentium similique at
-          aperiam. Voluptate eaque quam sunt, eos adipisci fuga omnis sit
-          commodi dolore ducimus, dolor mollitia et.
+          <div
+            class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          >
+            {#each relatedPlaces as object}
+              <TourContentCard {...object} />
+            {/each}
+          </div>
         </div>
       </TabPanel>
     </Tabs>
