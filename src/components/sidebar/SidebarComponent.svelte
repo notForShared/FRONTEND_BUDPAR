@@ -64,7 +64,7 @@
         <li>
           <a
             class="__sidebar-item flex items-center py-4 w-full duration-300 border-b-[1px] hover:bg-[#e0e0e0]"
-            href="#!"
+            href="https://admin.demopaariwisata.tapinkab.go.id/"
             target="_blank"
           >
             <div class="__sidebar-item-icon pl-5">

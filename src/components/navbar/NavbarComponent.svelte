@@ -1,6 +1,5 @@
 <script>
   import { link } from "svelte-spa-router";
-  import {} from "../../lib/config";
 
   import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
   import LoginIcon from "../../assets/svg/LoginIcon.svelte";

@@ -27,3 +27,9 @@
 .leaflet-popup {
   left: -40px !important;
 }
+
+@media (max-width: 640px) {
+  .leaflet-bottom.leaflet-right {
+    z-index: 998 !important;
+  }
+}
