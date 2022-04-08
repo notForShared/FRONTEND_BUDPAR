@@ -2,8 +2,32 @@
   import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
   import { fade } from "svelte/transition";
 
+  import { API, ASSETS } from "../../lib/config";
+
   import TourContentCard from "../../components/card/TourContentCard.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
+
+  async function fetchTour() {
+    let tours = await fetch(`${API}/tourist-attractions`);
+    let hotels = await fetch(`${API}/hotels`);
+    let restaurans = await fetch(`${API}/foods`);
+
+    if (
+      tours.status === 200 &&
+      hotels.status === 200 &&
+      restaurans.status === 200
+    ) {
+      let toursData = await tours.json();
+      let hotelsData = await hotels.json();
+      let restauransData = await restaurans.json();
+
+      console.log(toursData.data);
+    } else {
+      throw new Error("Could not fetch data !");
+    }
+  }
+
+  fetchTour();
 
   let tourObject = [
     {
@@ -71,13 +95,13 @@
 </script>
 
 <div class="__content-page-tour" in:fade={{ duration: 500 }}>
-  <div class="pt-36 relative">
+  <div class="pt-36 relative pb-5">
     <img
       src="/assets/images/dummy/john-towner-JgOeRuGD_Y4-unsplash(1).jpg"
       alt="placeholder"
       class="w-full h-[512px] object-cover"
     />
-    <div class="__content-title absolute bottom-5 px-7 md:px-14 lg:px-32">
+    <div class="__content-title absolute bottom-12 px-7 md:px-14 lg:px-32">
       <div class="flex pb-3">
         <h3
           class="text-white uppercase font-bold text-md md:text-xl decoration-[#00d6a1] decoration-2 underline underline-offset-4"
@@ -98,55 +122,43 @@
     </div>
   </div>
 
-  <div
-    class="__content-tour-main py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-  >
-    {#each tourObject as object}
-      <TourContentCard {...object} />
-    {/each}
-  </div>
+  <Tabs>
+    <TabList>
+      <Tab>Wisata</Tab>
+      <Tab>Penginapan</Tab>
+      <Tab>Restoran</Tab>
+    </TabList>
 
-  <div class="__related-place">
-    <Tabs>
-      <TabList>
-        <Tab>Penginapan</Tab>
-        <Tab>Restoran</Tab>
-        <Tab>Wisata Terdekat</Tab>
-      </TabList>
+    <TabPanel>
+      <div
+        class="__content-tour-main py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      >
+        {#each tourObject as object}
+          <TourContentCard {...object} />
+        {/each}
+      </div>
+    </TabPanel>
 
-      <TabPanel>
-        <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-        >
-          {#each relatedPlaces as object}
-            <TourContentCard {...object} />
-          {/each}
-        </div>
-      </TabPanel>
+    <TabPanel>
+      <div
+        class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      >
+        {#each relatedPlaces as object}
+          <TourContentCard {...object} />
+        {/each}
+      </div>
+    </TabPanel>
 
-      <TabPanel>
-        <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-        >
-          {#each relatedPlaces as object}
-            <TourContentCard {...object} />
-          {/each}
-        </div>
-      </TabPanel>
-
-      <TabPanel>
-        <div>
-          <div
-            class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-          >
-            {#each relatedPlaces as object}
-              <TourContentCard {...object} />
-            {/each}
-          </div>
-        </div>
-      </TabPanel>
-    </Tabs>
-  </div>
+    <TabPanel>
+      <div
+        class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      >
+        {#each relatedPlaces as object}
+          <TourContentCard {...object} />
+        {/each}
+      </div>
+    </TabPanel>
+  </Tabs>
 
   <FooterComponent />
 </div>

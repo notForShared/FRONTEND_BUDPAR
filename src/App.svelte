@@ -228,8 +228,6 @@
       molestiae quisquam eveniet adipisci expedita quidem accusantium.
       Reprehenderit.
     </div>
-
-    <div slot="__modal-footer" class="__slot-wrapper">asd</div>
   </ModalComponent>
 
   <SidebarComponent />

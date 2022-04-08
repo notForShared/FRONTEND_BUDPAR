@@ -1,6 +1,7 @@
 <script>
   import { link } from "svelte-spa-router";
   import { fade } from "svelte/transition";
+  import Lazy from "svelte-lazy";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
@@ -21,7 +22,7 @@
       let tourAttractionData = await tourAttraction.json();
       let newsData = await news.json();
 
-      console.log(tourAttractionData.data.data);
+      console.log(newsData.data.data);
 
       return {
         touristAttractions: tourAttractionData.data.data,
@@ -108,6 +109,7 @@
               tourTitle={name}
               tourAddress={address}
               tourDetail={uuid}
+              tourType={"tourism"}
             />
           </div>
         {/each}
@@ -123,11 +125,15 @@
   </div>
 
   <!-- promotional banner (changeable) -->
-  <img
-    src="/assets/images/banner/banner-1.png"
-    alt="promotional banner"
-    class="w-full h-full"
-  />
+
+  <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
+    <img
+      src="/assets/images/banner/banner-1.png"
+      alt="promotional banner"
+      class="w-full h-full"
+    />
+  </Lazy>
+
   <!-- promotional banner (changeable) -->
 
   <div class="px-7 lg:px-36">
@@ -145,9 +151,28 @@
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x gap-y-20"
         >
-          {#each news as news}
-            <NewsCardComponent {...news} />
-          {/each}
+          {#await getData}
+            <div
+              class="col-span-full flex items-center justify-center py-32"
+              in:fade={{ duration: 200 }}
+            >
+              <LoadingCircleAnimationComponent
+                size={{ w: "w-12", h: "h-12" }}
+              />
+            </div>
+          {:then data}
+            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+              <div in:fade={{ duration: 200 }}>
+                <NewsCardComponent
+                  createdDate={created_at}
+                  newsTitle={title}
+                  newsThumb={thumb}
+                  newsExc={excerpt}
+                  newsSlug={slug}
+                />
+              </div>
+            {/each}
+          {/await}
         </div>
       </div>
     </div>
@@ -167,9 +192,28 @@
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x gap-y-20"
         >
-          {#each news as news}
-            <ActivityCardComponent {...news} />
-          {/each}
+          {#await getData}
+            <div
+              class="col-span-full flex items-center justify-center py-32"
+              in:fade={{ duration: 200 }}
+            >
+              <LoadingCircleAnimationComponent
+                size={{ w: "w-12", h: "h-12" }}
+              />
+            </div>
+          {:then data}
+            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+              <div in:fade={{ duration: 200 }}>
+                <ActivityCardComponent
+                  createdDate={created_at}
+                  activityTitle={title}
+                  activityThumb={thumb}
+                  activityExc={excerpt}
+                  activitySlug={slug}
+                />
+              </div>
+            {/each}
+          {/await}
         </div>
       </div>
     </div>
