@@ -109,7 +109,6 @@
               tourTitle={name}
               tourAddress={address}
               tourDetail={uuid}
-              tourType={"tourism"}
             />
           </div>
         {/each}

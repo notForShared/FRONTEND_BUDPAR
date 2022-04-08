@@ -5,36 +5,36 @@
   import MapPinFillIcon from "../../assets/svg/MapPinFillIcon.svelte";
 
   export let imageUrl;
-  export let tourTitle;
-  export let tourAddress;
-  export let tourDetail;
+  export let restoTitle;
+  export let restoAddress;
+  export let restoDetail;
 </script>
 
-<div class="__tour-content-card mx-auto">
-  <div class="__tour-object-card-wrapper relative">
+<div class="__resto-content-card mx-auto">
+  <div class="__resto-object-card-wrapper relative">
     <a
       href="/content?{`${new URLSearchParams({
-        type: 'tourism',
-        title: tourTitle,
-        q: tourDetail,
+        type: 'resto',
+        title: restoTitle,
+        q: restoDetail,
       }).toString()}`}"
       use:link
     >
       <Lazy height={350} fadeOption={{ delay: 500, duration: 1000 }}>
         <img
           src={imageUrl}
-          alt={tourTitle}
+          alt={restoTitle}
           class="w-[291px] h-[350px] rounded-[20px] drop-shadow-md"
         />
       </Lazy>
 
       <div class="__card-content absolute bottom-0 px-5 py-5 text-white">
         <h3 class="text-xl font-bold capitalize pb-2 __text-shadow">
-          {tourTitle}
+          {restoTitle}
         </h3>
         <div class="flex items-center">
           <MapPinFillIcon />
-          <span class="pl-3 uppercase">{tourAddress}</span>
+          <span class="pl-3 uppercase">{restoAddress}</span>
         </div>
       </div>
     </a>
