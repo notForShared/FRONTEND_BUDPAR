@@ -9,6 +9,7 @@
   import SliderComponent from "../../components/slider/SliderComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
+  import ModalComponent from "../../components/modal/ModalComponent.svelte";
 
   import { BASEURI, API, ASSETS } from "../../lib/config";
 
@@ -152,8 +153,15 @@
 
   <div class="px-7 lg:px-36">
     <div class="content __news pt-10 md:pt-32">
-      <h1 class="font-bold text-3xl pb-2">Kabar Berita</h1>
-      <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+      <div class="__wrapper flex justify-between items-center">
+        <div class="__section-title">
+          <h1 class="font-bold text-3xl pb-2">Kabar Berita</h1>
+          <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+        </div>
+        <a class="font-bold text-md underline" href="/news-list" use:link
+          >Lihat Semua</a
+        >
+      </div>
       <div class="pt-10 pb-32">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
           {#each news as news}
@@ -164,8 +172,16 @@
     </div>
 
     <div class="content __activity">
-      <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
-      <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+      <div class="__wrapper flex justify-between items-center">
+        <div class="__section-title">
+          <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
+          <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+        </div>
+        <a class="font-bold text-md underline" href="/news-list" use:link
+          >Lihat Semua</a
+        >
+      </div>
+
       <div class="pt-10 pb-32">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
           {#each news as news}
@@ -177,4 +193,44 @@
   </div>
 
   <FooterComponent />
+
+  <ModalComponent className="__navbarSearch">
+    <h1 slot="__modal-title" class="__slot-wrapper">Pencarian</h1>
+    <div slot="__modal-content" class="__slot-wrapper ">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem voluptas
+      mollitia inventore obcaecati quam fugit nobis id perferendis, iusto sit
+      porro vel laborum exercitationem nesciunt explicabo nemo ea culpa aliquam
+      libero alias veniam? Beatae a nisi modi iusto eveniet! Cum a, tenetur
+      fugiat, ducimus deleniti minima cupiditate illum numquam sed qui porro id
+      perferendis, nobis aliquam. Saepe maiores vero eius praesentium, ex
+      voluptate atque amet assumenda optio illum, dicta laudantium autem sequi
+      dignissimos nulla error. Eveniet, ullam? Qui excepturi eaque, recusandae
+      in eligendi, adipisci voluptatum ducimus esse, soluta similique ex nisi
+      modi! Nostrum culpa totam quis. Atque, iste debitis provident, nostrum
+      vitae dicta deleniti accusantium alias voluptate facere, magni quia. Eum
+      atque soluta autem ducimus porro libero doloremque facere ipsum tempore!
+      Earum voluptatem possimus quod dolore natus explicabo itaque consequuntur
+      nihil? Consequuntur eum cupiditate iusto praesentium reiciendis! Minus
+      amet, corporis eius fuga voluptates, blanditiis quod debitis nam nisi
+      fugiat earum itaque accusamus maiores asperiores nostrum cum incidunt
+      aspernatur mollitia ad ipsa aperiam? Minima unde, molestiae voluptatibus
+      ex est dolor sapiente ipsum quas, distinctio libero excepturi vel sunt
+      vero eaque molestias laboriosam atque. Voluptatibus illum reprehenderit
+      corrupti dignissimos dicta eius omnis et vel non exercitationem rem, fuga
+      placeat officia rerum nisi repudiandae facere eveniet nulla fugiat? Soluta
+      laudantium, voluptates deserunt natus optio odio itaque praesentium
+      eveniet, vel reprehenderit quo dolore id eaque nobis dolorum explicabo
+      libero omnis enim nisi saepe, totam tenetur voluptatum voluptatibus quas.
+      Temporibus rem libero adipisci reiciendis fugiat vitae facere quidem,
+      nesciunt nam corporis odio autem iste minima error commodi placeat
+      dignissimos beatae, nostrum id aliquam, voluptatum corrupti sunt. Labore
+      velit alias, sapiente repudiandae soluta quibusdam minima blanditiis, quae
+      laudantium magnam cumque ut. Modi voluptates culpa id error dolor ipsum
+      reiciendis accusantium? Nisi eligendi optio qui repellendus veritatis
+      quaerat, temporibus quia natus alias, saepe accusantium quam quod
+      consequatur.
+    </div>
+
+    <div slot="__modal-footer" class="__slot-wrapper">asd</div>
+  </ModalComponent>
 </div>

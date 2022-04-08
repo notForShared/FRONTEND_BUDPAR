@@ -9,6 +9,7 @@
 
   import { sidebarState } from "../../lib/store/sidebar/sidebar.state";
   import { closeSidebar } from "../../lib/module/sidebar";
+  import { openModal } from "../../lib/module/modal";
 
   function goHere(path) {
     push(`/${path}`);
@@ -29,7 +30,7 @@
           <a
             class="__sidebar-item flex items-center py-4 w-full duration-300 border-b-[1px] hover:bg-[#e0e0e0]"
             href="#!"
-            on:click|preventDefault={() => goHere("asd")}
+            on:click|preventDefault={() => openModal("__navbarSearch")}
           >
             <div class="__sidebar-item-icon pl-5">
               <SearchDarkIcon />

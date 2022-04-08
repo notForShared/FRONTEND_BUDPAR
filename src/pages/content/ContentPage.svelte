@@ -5,6 +5,7 @@
   import { fade, fly } from "svelte/transition";
 
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
+  import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
 
   import PhoneCircleGreenIcon from "../../assets/svg/PhoneCircleGreenIcon.svelte";
@@ -247,6 +248,8 @@
       </TabPanel>
     </Tabs>
   </div>
+
+  <FooterComponent />
 </div>
 
 <style>

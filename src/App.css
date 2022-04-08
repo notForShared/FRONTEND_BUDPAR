@@ -23,6 +23,10 @@
   width: 42px !important;
 }
 
+.__slot-wrapper {
+  display: inherit!important;
+}
+
 /* forcing leaflet to center popup */
 .leaflet-popup {
   left: -40px !important;

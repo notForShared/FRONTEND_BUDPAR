@@ -1,6 +1,8 @@
 <script>
   import { link } from "svelte-spa-router";
 
+  import { openModal } from "../../lib/module/modal";
+
   import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
   import LoginIcon from "../../assets/svg/LoginIcon.svelte";
   import WordIcon from "../../assets/svg/WordIcon.svelte";
@@ -38,7 +40,11 @@
       <WordIcon />
       <span class="pl-3">Places</span>
     </a>
-    <a class="flex items-center pr-8 pl-6" href="#!">
+    <a
+      class="flex items-center pr-8 pl-6"
+      href="#!"
+      on:click|preventDefault={() => openModal("__navbarSearch")}
+    >
       <SearchDarkIcon />
       <span class="pl-3">Search</span>
     </a>

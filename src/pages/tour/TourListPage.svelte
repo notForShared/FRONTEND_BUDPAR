@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition";
 
   import TourContentCard from "../../components/card/TourContentCard.svelte";
+  import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
   let tourObject = [
     {
@@ -146,6 +147,8 @@
       </TabPanel>
     </Tabs>
   </div>
+
+  <FooterComponent />
 </div>
 
 <style>
