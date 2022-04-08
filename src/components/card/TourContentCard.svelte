@@ -5,6 +5,7 @@
   export let imageUrl;
   export let tourTitle;
   export let tourAddress;
+  export let tourDetail;
 </script>
 
 <div class="__tour-content-card mx-auto">
@@ -12,7 +13,8 @@
     <a
       href="/content?{`${new URLSearchParams({
         type: 'tourism',
-        q: tourTitle,
+        title: tourTitle,
+        q: tourDetail,
       }).toString()}`}"
       use:link
     >

@@ -24,8 +24,6 @@
     L.marker(latlng, { icon: markerTour() }).addTo(cardMap);
     cardMap.flyTo(latlng, 13);
 
-    console.log(latlng);
-
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
