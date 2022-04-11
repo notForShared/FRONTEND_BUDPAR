@@ -3,6 +3,7 @@
   import Lazy from "svelte-lazy";
 
   import MapPinFillIcon from "../../assets/svg/MapPinFillIcon.svelte";
+  import { truncate } from "../../lib/module/truncate";
 
   export let imageUrl;
   export let tourTitle;
@@ -13,8 +14,7 @@
 <div class="__tour-content-card mx-auto">
   <div class="__tour-object-card-wrapper relative">
     <a
-      href="/content?{`${new URLSearchParams({
-        type: 'tourism',
+      href="/tour-detail?{`${new URLSearchParams({
         title: tourTitle,
         q: tourDetail,
       }).toString()}`}"
@@ -34,7 +34,7 @@
         </h3>
         <div class="flex items-center">
           <MapPinFillIcon />
-          <span class="pl-3 uppercase">{tourAddress}</span>
+          <span class="pl-3 uppercase">{truncate(tourAddress, 20)}</span>
         </div>
       </div>
     </a>

@@ -38,7 +38,7 @@
   <div class="hidden md:flex md:items-center __navbar-button">
     <a class="flex items-center px-6" href="/tour-list" use:link>
       <WordIcon />
-      <span class="pl-3">Places</span>
+      <span class="pl-3">Wisata</span>
     </a>
     <a
       class="flex items-center pr-8 pl-6"
@@ -46,7 +46,7 @@
       on:click|preventDefault={() => openModal("__navbarSearch")}
     >
       <SearchDarkIcon />
-      <span class="pl-3">Search</span>
+      <span class="pl-3">Cari</span>
     </a>
     <a
       class="flex items-center px-4 py-3 text-white font-bold rounded-md bg-[#00d6a1]"

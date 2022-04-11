@@ -1,14 +1,13 @@
 <script>
   import { fade } from "svelte/transition";
-
   import { API } from "../../lib/config";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
-  import NewsCardComponent from "../../components/card/NewsCardComponent.svelte";
+  import ActivityCardComponent from "../../components/card/ActivityCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
   async function fetchContent() {
-    let news = await fetch(`${API}/articleByTag?tag=Event+Wisata&paginate=8`);
+    let news = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=8`);
 
     if (news.status === 200) {
       let newsData = await news.json();
@@ -18,7 +17,6 @@
       throw new Error("Could not fetch data !");
     }
   }
-
   let getContent = fetchContent();
 </script>
 
@@ -65,12 +63,12 @@
     >
       {#each data.articles as { created_at, title, thumb, slug, excerpt }}
         <div in:fade={{ duration: 200 }}>
-          <NewsCardComponent
+          <ActivityCardComponent
             createdDate={created_at}
-            newsTitle={title}
-            newsThumb={thumb}
-            newsExc={excerpt}
-            newsSlug={slug}
+            activityTitle={title}
+            activityThumb={thumb}
+            activityExc={excerpt}
+            activitySlug={slug}
           />
         </div>
       {/each}

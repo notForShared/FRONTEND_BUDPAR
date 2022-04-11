@@ -16,17 +16,18 @@
 
   async function fetchData() {
     let tourAttraction = await fetch(`${API}/tourist-attractions`);
-    let news = await fetch(`${API}/articles`);
+    let news = await fetch(`${API}/articleByTag?tag=Event+Wisata&paginate=3`);
+    let activity = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
 
     if (tourAttraction.status === 200 && news.status === 200) {
       let tourAttractionData = await tourAttraction.json();
       let newsData = await news.json();
-
-      console.log(newsData.data.data);
+      let activityData = await activity.json();
 
       return {
         touristAttractions: tourAttractionData.data.data,
-        newsData: newsData.data.data,
+        newsData: newsData.data.articles,
+        activityData: activityData.data.articles,
       };
     } else {
       throw new Error("Could not fetch data !");
@@ -34,27 +35,6 @@
   }
 
   let getData = fetchData();
-
-  let news = [
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-  ];
 </script>
 
 <!-- meta tag for SEO -->
@@ -182,7 +162,7 @@
           <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
           <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
         </div>
-        <a class="font-bold text-md underline" href="/news-list" use:link
+        <a class="font-bold text-md underline" href="/activity-list" use:link
           >Lihat Semua</a
         >
       </div>
@@ -201,7 +181,7 @@
               />
             </div>
           {:then data}
-            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
               <div in:fade={{ duration: 200 }}>
                 <ActivityCardComponent
                   createdDate={created_at}
