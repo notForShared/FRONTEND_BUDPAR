@@ -28,6 +28,7 @@
   "dependencies": {
     "leaflet": "^1.7.1",
     "sirv-cli": "^2.0.0",
+    "svelte-lazy": "^1.1.0",
     "svelte-spa-router": "^3.2.0",
     "svelte-tabs": "^1.1.0"
   }

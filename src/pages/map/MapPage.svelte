@@ -1,8 +1,61 @@
 <script>
   import { fade } from "svelte/transition";
 
+  import { BASEURI, API } from "../../lib/config";
+
+  import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapComponent from "../../components/map/MapComponent.svelte";
-  import { BASEURI } from "../../lib/config";
+
+  async function fetchCoordList() {
+    let parsedData = {
+      tours: {
+        type: "tours",
+        objectIDList: [],
+      },
+
+      resto: {
+        type: "resto",
+        objectIDList: [],
+      },
+
+      hotel: {
+        type: "hotel",
+        objectIDList: [],
+      },
+    };
+
+    let tours = await fetch(`${API}/tourist-attractions?paginate=10`);
+    let restos = await fetch(`${API}/foods?paginate=10`);
+    let hotels = await fetch(`${API}/hotels?paginate=10`);
+
+    if (
+      tours.status === 200 &&
+      restos.status === 200 &&
+      hotels.status === 200
+    ) {
+      let toursData = await tours.json();
+      let restosData = await restos.json();
+      let hotelsData = await hotels.json();
+
+      for (let tour in toursData.data.data) {
+        parsedData.tours.objectIDList.push(toursData.data.data[tour].uuid);
+      }
+
+      for (let resto in restosData.data.data) {
+        parsedData.resto.objectIDList.push(restosData.data.data[resto].uuid);
+      }
+
+      for (let hotel in hotelsData.data.data) {
+        parsedData.hotel.objectIDList.push(hotelsData.data.data[hotel].uuid);
+      }
+
+      return parsedData;
+    } else {
+      throw new Error("Cannot fetch data!");
+    }
+  }
+
+  let getCoordList = fetchCoordList();
 </script>
 
 <!-- meta tag for SEO -->
@@ -25,9 +78,20 @@
 </svelte:head>
 <!-- meta tag for SEO -->
 
-<div
-  in:fade={{ duration: 500 }}
-  class="flex items-center justify-center w-full h-screen"
->
-  <MapComponent />
-</div>
+{#await getCoordList}
+  <div class="w-full h-screen pb-24">
+    <div
+      class="h-screen flex items-center justify-center py-32"
+      in:fade={{ duration: 200 }}
+    >
+      <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
+    </div>
+  </div>
+{:then data}
+  <div
+    in:fade={{ duration: 500 }}
+    class="flex items-center justify-center w-full h-screen"
+  >
+    <MapComponent {...data} />
+  </div>
+{/await}

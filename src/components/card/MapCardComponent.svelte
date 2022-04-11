@@ -2,9 +2,14 @@
   import L from "leaflet";
   import { onMount } from "svelte";
 
-  import { markerTour } from "../../lib/module/map.marker";
+  import {
+    markerTour,
+    markerHotel,
+    markerResto,
+  } from "../../lib/module/map.marker";
 
   export let latlng;
+  export let objectType = "tours";
 
   let cardMap;
 
@@ -21,10 +26,15 @@
       zoomControl: false,
     }).setView([-2.9472475, 115.1483882], 13);
 
-    L.marker(latlng, { icon: markerTour() }).addTo(cardMap);
-    cardMap.flyTo(latlng, 13);
+    if (objectType === "hotel") {
+      L.marker(latlng, { icon: markerHotel() }).addTo(cardMap);
+    } else if (objectType === "tours") {
+      L.marker(latlng, { icon: markerTour() }).addTo(cardMap);
+    } else if (objectType === "resto") {
+      L.marker(latlng, { icon: markerResto() }).addTo(cardMap);
+    }
 
-    console.log(latlng);
+    cardMap.flyTo(latlng, 13);
 
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:

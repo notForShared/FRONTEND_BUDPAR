@@ -1,7 +1,9 @@
 <script>
   import { link } from "svelte-spa-router";
   import { fade } from "svelte/transition";
+  import Lazy from "svelte-lazy";
 
+  import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
   import ActivityCardComponent from "../../components/card/ActivityCardComponent.svelte";
@@ -12,84 +14,27 @@
 
   import { BASEURI, API, ASSETS } from "../../lib/config";
 
-  // async function fetchData() {
-  //   let tourAttraction = await fetch(`${API}/tourist-attractions`);
-  //   let news = await fetch(`${API}/articles`);
+  async function fetchData() {
+    let tourAttraction = await fetch(`${API}/tourist-attractions`);
+    let news = await fetch(`${API}/articleByTag?tag=Event+Wisata&paginate=3`);
+    let activity = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
 
-  //   if (tourAttraction.status === 200 && news.status === 200) {
-  //     let tourAttractionData = await tourAttraction.json();
-  //     let newsData = await news.json();
+    if (tourAttraction.status === 200 && news.status === 200) {
+      let tourAttractionData = await tourAttraction.json();
+      let newsData = await news.json();
+      let activityData = await activity.json();
 
-  //     console.log(tourAttractionData.data.data);
-  //   }
-  // }
+      return {
+        touristAttractions: tourAttractionData.data.data,
+        newsData: newsData.data.articles,
+        activityData: activityData.data.articles,
+      };
+    } else {
+      throw new Error("Could not fetch data !");
+    }
+  }
 
-  // fetchData();
-
-  let tourObject = [
-    {
-      imageUrl: "/assets/images/dummy/aaron-thomas-4CHdH9cMr0E-unsplash.png",
-      tourTitle: "wisata religi datu kabul",
-      tourAddress: "cls, Kabupaten Tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/andreas-dress-GhvpEtG5HMs-unsplash.png",
-      tourTitle: "wisata bukit buluan",
-      tourAddress: "binuang, kabupaten tapin",
-    },
-    {
-      imageUrl:
-        "/assets/images/dummy/huper-by-joshua-earle-ljFOTdPxbW8-unsplash.png",
-      tourTitle: "wisata religi datu nurraya",
-      tourAddress: "Tatakan, Kabupaten Tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/kamil-feczko-eL15tmyCcjw-unsplash.png",
-      tourTitle: "wisata buatan lembah cinta",
-      tourAddress: "salam babaris, Kabupaten Tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/nick-rickert-qx3ZAL-gYjY-unsplash.png",
-      tourTitle: "wisata alam batu baampar",
-      tourAddress: "piani, Kabupaten Tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/noah-cellura-BNK525WM4BA-unsplash.png",
-      tourTitle: "wisata buatan menatap masa depan",
-      tourAddress: "salam babaris, kabupaten tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/quino-al-mBQIfKlvowM-unsplash.png",
-      tourTitle: "wisata kalijodoh",
-      tourAddress: "Tatakan, Kabupaten Tapin",
-    },
-    {
-      imageUrl: "/assets/images/dummy/v2osk-1Z2niiBPg5A-unsplash.png",
-      tourTitle: "wisata snowpeak aurora",
-      tourAddress: "lokpaikat, Kabupaten Tapin",
-    },
-  ];
-
-  let news = [
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-    {
-      title: "asd",
-      image: "asd",
-      desc: "asd",
-      readMore: "asd",
-    },
-  ];
+  let getData = fetchData();
 </script>
 
 <!-- meta tag for SEO -->
@@ -129,9 +74,25 @@
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
     >
-      {#each tourObject as object}
-        <TourContentCard {...object} />
-      {/each}
+      {#await getData}
+        <div
+          class="col-span-full flex items-center justify-center py-32"
+          in:fade={{ duration: 200 }}
+        >
+          <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
+        </div>
+      {:then data}
+        {#each data.touristAttractions as { thumb, name, address, uuid }}
+          <div in:fade={{ duration: 200 }}>
+            <TourContentCard
+              imageUrl={`${ASSETS}/${thumb}`}
+              tourTitle={name}
+              tourAddress={address}
+              tourDetail={uuid}
+            />
+          </div>
+        {/each}
+      {/await}
     </div>
     <div class="text-center">
       <a
@@ -143,34 +104,95 @@
   </div>
 
   <!-- promotional banner (changeable) -->
-  <img
-    src="/assets/images/banner/banner-1.png"
-    alt="promotional banner"
-    class="w-full h-full"
-  />
+
+  <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
+    <img
+      src="/assets/images/banner/banner-1.png"
+      alt="promotional banner"
+      class="w-full h-full"
+    />
+  </Lazy>
+
   <!-- promotional banner (changeable) -->
 
   <div class="px-7 lg:px-36">
     <div class="content __news pt-10 md:pt-32">
-      <h1 class="font-bold text-3xl pb-2">Kabar Berita</h1>
-      <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+      <div class="__wrapper flex justify-between items-center">
+        <div class="__section-title">
+          <h1 class="font-bold text-3xl pb-2">Kabar Berita</h1>
+          <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+        </div>
+        <a class="font-bold text-md underline" href="/news-list" use:link
+          >Lihat Semua</a
+        >
+      </div>
       <div class="pt-10 pb-32">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
-          {#each news as news}
-            <NewsCardComponent {...news} />
-          {/each}
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x gap-y-20"
+        >
+          {#await getData}
+            <div
+              class="col-span-full flex items-center justify-center py-32"
+              in:fade={{ duration: 200 }}
+            >
+              <LoadingCircleAnimationComponent
+                size={{ w: "w-12", h: "h-12" }}
+              />
+            </div>
+          {:then data}
+            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+              <div in:fade={{ duration: 200 }}>
+                <NewsCardComponent
+                  createdDate={created_at}
+                  newsTitle={title}
+                  newsThumb={thumb}
+                  newsExc={excerpt}
+                  newsSlug={slug}
+                />
+              </div>
+            {/each}
+          {/await}
         </div>
       </div>
     </div>
 
     <div class="content __activity">
-      <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
-      <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+      <div class="__wrapper flex justify-between items-center">
+        <div class="__section-title">
+          <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
+          <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+        </div>
+        <a class="font-bold text-md underline" href="/activity-list" use:link
+          >Lihat Semua</a
+        >
+      </div>
+
       <div class="pt-10 pb-32">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x gap-y-20">
-          {#each news as news}
-            <ActivityCardComponent {...news} />
-          {/each}
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x gap-y-20"
+        >
+          {#await getData}
+            <div
+              class="col-span-full flex items-center justify-center py-32"
+              in:fade={{ duration: 200 }}
+            >
+              <LoadingCircleAnimationComponent
+                size={{ w: "w-12", h: "h-12" }}
+              />
+            </div>
+          {:then data}
+            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
+              <div in:fade={{ duration: 200 }}>
+                <ActivityCardComponent
+                  createdDate={created_at}
+                  activityTitle={title}
+                  activityThumb={thumb}
+                  activityExc={excerpt}
+                  activitySlug={slug}
+                />
+              </div>
+            {/each}
+          {/await}
         </div>
       </div>
     </div>

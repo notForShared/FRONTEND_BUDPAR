@@ -1,4 +1,4 @@
 import { writable } from 'svelte/store'
 
 
-export const sidebarState = writable({show: false})
+export const sidebarState = writable({ show: false })
