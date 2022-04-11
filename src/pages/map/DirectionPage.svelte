@@ -15,14 +15,17 @@
 
 <!-- meta tag for SEO -->
 <svelte:head>
-  <title>Map Wisata | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title>
+  <title
+    >Rute perjalanan menuju wisata | Dinas Kebudayaan dan Pariwisata Kabupaten
+    Tapin</title
+  >
   <meta
     name="description"
-    content="Proyeksi lokasi wisata di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+    content="Rute perjalanan menuju objek tujuan wisata | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta
     name="keywords"
-    content="map wisata disbudpar kab tapin, map lokasi wisata disbudpar tapin, lokasi wisata dinas kebudayaan, daftar lokasi wisata disbud tapin"
+    content="map wisata Rute perjalanan disbudpar kab tapin, map Rute perjalanan lokasi wisata disbudpar tapin, lokasi Rute perjalanan wisata dinas kebudayaan, daftar lokasi wisata disbud tapin"
   />
   <meta
     name="author"

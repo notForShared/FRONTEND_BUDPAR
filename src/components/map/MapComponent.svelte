@@ -3,6 +3,8 @@
   import { onMount } from "svelte";
   import L from "leaflet";
 
+  import { API } from "../../lib/config";
+
   import MapZoomControllComponent from "./MapZoomControllComponent.svelte";
   import MapControlComponent from "./MapToolbarComponent.svelte";
 
@@ -12,7 +14,23 @@
     markerTour,
   } from "../../lib/module/map.marker";
 
+  export let tours;
+  export let hotel;
+  export let resto;
+
   let map;
+
+  async function fetchLocationCoords(id, endpoint) {
+    let data = await fetch(`${API}/${endpoint}/${id}/show`);
+
+    if (data.status === 200) {
+      let detailData = await data.json();
+
+      return detailData;
+    } else {
+      throw new Error("Cannot fetch data!");
+    }
+  }
 
   function updateSize() {
     if (map) {
@@ -78,23 +96,51 @@
     };
 
     // initialize Marker
-    let hotel = L.marker([-2.9299291, 115.1520053], { icon: markerHotel() });
-    let resto = L.marker([-2.9473604, 115.1561787], { icon: markerResto() });
-    let tour = L.marker([-3.1325291, 115.0887266], { icon: markerTour() });
+    for (let hotelIdx in hotel.objectIDList) {
+      let hotelId = hotel.objectIDList[hotelIdx];
+      fetchLocationCoords(hotelId, "hotel").then((data) => {
+        L.marker(
+          [data.data.hotel_detail.latitude, data.data.hotel_detail.longitude],
+          {
+            icon: markerHotel(),
+          }
+        )
+          .bindPopup(`Hotel ${data.data.hotel_detail.name}`)
+          .addTo(map);
+      });
+    }
 
-    // bind marker to popup
-    hotel.bindPopup("I am a circle.");
-    resto.bindPopup("I am a circle.");
-    tour.bindPopup("I am a circle.");
+    for (let restoIdx in resto.objectIDList) {
+      let restoId = resto.objectIDList[restoIdx];
+      fetchLocationCoords(restoId, "food").then((data) => {
+        L.marker(
+          [data.data.food_detail.latitude, data.data.food_detail.longitude],
+          {
+            icon: markerResto(),
+          }
+        )
+          .bindPopup(`Restoran ${data.data.food_detail.name}`)
+          .addTo(map);
+      });
+    }
+
+    for (let toursIdx in tours.objectIDList) {
+      let toursId = tours.objectIDList[toursIdx];
+      fetchLocationCoords(toursId, "tourist-attraction").then((data) => {
+        L.marker(
+          [data.data.wisata_detail.latitude, data.data.wisata_detail.longitude],
+          {
+            icon: markerTour(),
+          }
+        )
+          .bindPopup(`wisata ${data.data.wisata_detail.name}`)
+          .addTo(map);
+      });
+    }
 
     // registering custom control to map
     zoomControl.addTo(map);
     toolbar.addTo(map);
-
-    // registering marker to map
-    hotel.addTo(map);
-    resto.addTo(map);
-    tour.addTo(map);
 
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
