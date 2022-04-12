@@ -60,7 +60,7 @@
 <div class="__content-page-tour" in:fade={{ duration: 500 }}>
   <div class="pt-36 relative pb-5">
     <img
-      src="/assets/images/dummy/john-towner-JgOeRuGD_Y4-unsplash(1).jpg"
+      src="/assets/images/placeholder/placeholder-bg.jpg"
       alt="placeholder"
       class="w-full h-[512px] object-cover"
     />

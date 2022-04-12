@@ -39,9 +39,7 @@
 
   <meta
     name="description"
-    content="{queryparams.get(
-      'type'
-    )} {title} di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+    content="{title} di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
 
   <!-- svelte-ignore component-name-lowercase -->

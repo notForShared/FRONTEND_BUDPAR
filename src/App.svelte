@@ -1,11 +1,12 @@
 <script>
   import debounce from "lodash/debounce";
-  import Router from "svelte-spa-router";
+  import Router, { push } from "svelte-spa-router";
   import { routes } from "./pages/router";
   import { fade } from "svelte/transition";
 
-  import { API } from "./lib/config";
   import { truncate } from "./lib/module/truncate";
+  import { API } from "./lib/config";
+  import { closeModal } from "./lib/module/modal";
 
   import LoadingCircleAnimationComponent from "./components/animation/LoadingCircleAnimationComponent.svelte";
   import SidebarButtonComponent from "./components/floatingbutton/SidebarButtonComponent.svelte";
@@ -20,11 +21,21 @@
 
     if (search.status === 200) {
       let searchData = await search.json();
-      console.log(searchData.data);
       return searchData.data;
     } else {
       throw new Error("Cannot fetch data !");
     }
+  }
+
+  function goToSearchContent(query) {
+    closeModal("__navbarSearch");
+
+    let url = `/${query.path}?${new URLSearchParams({
+      title: query.title,
+      q: query.q,
+    }).toString()}`;
+
+    push(url);
   }
 
   let searchData = debounce((event) => {
@@ -47,6 +58,7 @@
       <input
         type="text"
         class="border-2 rounded px-2 py-1 w-full mb-3 border-[#00d6a1]"
+        autofocus
         on:input={searchData}
       />
       {#if !searchContent}
@@ -73,11 +85,17 @@
               <h3 class="rounded border-2 px-5 py-3 font-semibold my-2">
                 Artikel
               </h3>
-              <div class="pt-3 block">
-                {#each data.articles as { title }}
+              <div class="py-3 block">
+                {#each data.articles as { title, slug }}
                   <a
-                    class="rounded border-2 w-full block underline ml-7 pl-4 mt-2 py-3"
-                    href="/">{truncate(title, 20)}</a
+                    class="rounded border-2 w-full block underline ml-3 pl-4 mt-2 py-3"
+                    href="#!"
+                    on:click|preventDefault={() =>
+                      goToSearchContent({
+                        title: title,
+                        path: "article-detail",
+                        q: slug,
+                      })}>{truncate(title, 20)}</a
                   >
                 {/each}
               </div>
@@ -86,16 +104,58 @@
               <h3 class="rounded border-2 px-5 py-3 font-semibold my-2">
                 Wisata
               </h3>
+              <div class="py-3 block">
+                {#each data.tourist_attcations as { name, uuid }}
+                  <a
+                    class="rounded border-2 w-full block underline ml-3 pl-4 mt-2 py-3"
+                    href="#!"
+                    on:click|preventDefault={() =>
+                      goToSearchContent({
+                        title: name,
+                        path: "tour-detail",
+                        q: uuid,
+                      })}>{truncate(name, 20)}</a
+                  >
+                {/each}
+              </div>
             {/if}
             {#if data.hotels.length > 0}
               <h3 class="rounded border-2 px-5 py-3 font-semibold my-2">
                 Penginapan
               </h3>
+              <div class="py-3 block">
+                {#each data.hotels as { name, uuid }}
+                  <a
+                    class="rounded border-2 w-full block underline ml-3 pl-4 mt-2 py-3"
+                    href="#!"
+                    on:click|preventDefault={() =>
+                      goToSearchContent({
+                        title: name,
+                        path: "hotel-detail",
+                        q: uuid,
+                      })}>{truncate(name, 20)}</a
+                  >
+                {/each}
+              </div>
             {/if}
             {#if data.foods.length > 0}
               <h3 class="rounded border-2 px-5 py-3 font-semibold my-2">
-                Restoran
+                Penginapan
               </h3>
+              <div class="py-3 block">
+                {#each data.foods as { name, uuid }}
+                  <a
+                    class="rounded border-2 w-full block underline ml-3 pl-4 mt-2 py-3"
+                    href="#!"
+                    on:click|preventDefault={() =>
+                      goToSearchContent({
+                        title: name,
+                        path: "resto-detail",
+                        q: uuid,
+                      })}>{truncate(name, 20)}</a
+                  >
+                {/each}
+              </div>
             {/if}
           </div>
         {/await}

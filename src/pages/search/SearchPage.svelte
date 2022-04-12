@@ -28,21 +28,23 @@
 
 <!-- meta tag for SEO -->
 <svelte:head>
-  <title>Daftar Wisata | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title>
+  <title
+    >Pencarian wisata | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title
+  >
   <meta
     name="description"
-    content="Daftar lokasi wisata di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+    content="Pencarian wisata di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta
     name="keywords"
-    content="daftar wisata disbudpar kab tapin, daftar lokasi wisata disbudpar tapin"
+    content="Pencarian wisata di kabupaten tapin disbudpar kab tapin, wisata di kabupaten tapin wisata disbudpar tapin"
   />
   <meta
     name="author"
     content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href={`${BASEURI}#/tour-list`} />
+  <link rel="canonical" href={`${BASEURI}#/search`} />
 </svelte:head>
 <!-- meta tag for SEO -->
 
@@ -59,7 +61,7 @@
   <div class="__content-page-tour" in:fade={{ duration: 500 }}>
     <div class="pt-36 relative pb-5">
       <img
-        src="/assets/images/dummy/john-towner-JgOeRuGD_Y4-unsplash(1).jpg"
+        src="/assets/images/placeholder/placeholder-bg.jpg"
         alt="placeholder"
         class="w-full h-[512px] object-cover"
       />

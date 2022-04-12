@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition";
   import Lazy from "svelte-lazy";
 
+  import SliderLoadingAnimationComponent from "../../components/animation/SliderLoadingAnimationComponent.svelte";
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
@@ -19,23 +20,27 @@
     let news = await fetch(`${API}/articleByTag?tag=Event+Wisata&paginate=3`);
     let activity = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
     let popularTour = await fetch(`${API}/tourist-attractions/popular`);
+    let slider = await fetch(`${API}/sliders`);
 
     if (
       tourAttraction.status === 200 &&
       popularTour.status === 200 &&
       news.status === 200 &&
-      activity.status === 200
+      activity.status === 200 &&
+      slider.status === 200
     ) {
       let tourAttractionData = await tourAttraction.json();
       let popularList = await popularTour.json();
       let activityData = await activity.json();
       let newsData = await news.json();
+      let sliderData = await slider.json();
 
       return {
         touristAttractions: tourAttractionData.data.data,
         newsData: newsData.data.articles,
         activityData: activityData.data.articles,
         popularList: popularList.data,
+        slidersImage: sliderData.data[0].image,
       };
     } else {
       throw new Error("Could not fetch data !");
@@ -69,7 +74,11 @@
 
 <div in:fade={{ duration: 500 }}>
   <div class="relative">
-    <SliderComponent />
+    {#await getData}
+      <SliderLoadingAnimationComponent />
+    {:then data}
+      <SliderComponent bgImage={data.slidersImage} />
+    {/await}
     <SearchCardComponent />
     <MapButtonComponent />
   </div>
