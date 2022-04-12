@@ -37,26 +37,6 @@
 
   let detailData = getDetail();
 
-  let relatedPlaces = [
-    {
-      imageUrl: "/assets/images/dummy/neonbrand-iAftdIcgpFc-unsplash 1.png",
-      tourTitle: "wisata religi datu kabul",
-      tourAddress: "cls, Kabupaten Tapin",
-    },
-    {
-      imageUrl:
-        "/assets/images/dummy/francesca-tosolini-w1RE0lBbREo-unsplash.png",
-      tourTitle: "wisata bukit buluan",
-      tourAddress: "binuang, kabupaten tapin",
-    },
-    {
-      imageUrl:
-        "/assets/images/dummy/christopher-jolly-GqbU78bdJFM-unsplash.png",
-      tourTitle: "wisata religi datu nurraya",
-      tourAddress: "Tatakan, Kabupaten Tapin",
-    },
-  ];
-
   function showMainImage(imageUrl) {
     displayImage = `${imageUrl}`;
   }
@@ -243,48 +223,6 @@
           {/if}
         </div>
       </div>
-    </div>
-
-    <div class="__related-place">
-      <Tabs>
-        <TabList>
-          <Tab>Penginapan</Tab>
-          <Tab>Restoran</Tab>
-          <Tab>Wisata Terdekat</Tab>
-        </TabList>
-
-        <TabPanel>
-          <div
-            class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-          >
-            {#each relatedPlaces as object}
-              <TourContentCard {...object} />
-            {/each}
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div
-            class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-          >
-            {#each relatedPlaces as object}
-              <TourContentCard {...object} />
-            {/each}
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div>
-            <div
-              class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-            >
-              {#each relatedPlaces as object}
-                <TourContentCard {...object} />
-              {/each}
-            </div>
-          </div>
-        </TabPanel>
-      </Tabs>
     </div>
 
     <FooterComponent />

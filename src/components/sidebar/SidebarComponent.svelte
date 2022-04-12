@@ -15,6 +15,11 @@
     push(`/${path}`);
     closeSidebar();
   }
+
+  function openSearchModal(modalName) {
+    openModal(modalName);
+    closeSidebar();
+  }
 </script>
 
 {#if $sidebarState.show === true}
@@ -30,7 +35,9 @@
           <a
             class="__sidebar-item flex items-center py-4 w-full duration-300 border-b-[1px] hover:bg-[#e0e0e0]"
             href="#!"
-            on:click|preventDefault={() => openModal("__navbarSearch")}
+            on:click|preventDefault={() => {
+              openSearchModal("__navbarSearch");
+            }}
           >
             <div class="__sidebar-item-icon pl-5">
               <SearchDarkIcon />
