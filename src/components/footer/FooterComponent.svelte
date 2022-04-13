@@ -103,21 +103,27 @@
         >
           <div class="flex justify-center">
             <img
-              class="w-20 h-auto"
-              src="/assets/logo/tapin.png"
-              alt="footer logo kab. tapin"
-            />
-            <img
-              class="w-32 h-auto ml-7"
+              class="w-32 h-auto"
               src="/assets/logo/win.png"
               alt="footer logo wonderful indonesia"
             />
-          </div>
-          <div class="flex justify-center">
             <img
-              class="w-[5.3rem] h-auto"
+              class="w-20 h-auto ml-8"
+              src="/assets/logo/tapin.png"
+              alt="footer logo kab. tapin"
+            />
+          </div>
+          <div class="flex justify-center pt-5">
+            <img
+              class="w-[120px] h-auto"
+              src="/assets/logo/bud-tap.png"
+              alt="logo budpar"
+            />
+
+            <img
+              class="w-[5.3rem] h-auto ml-8"
               src="/assets/logo/kominfo.png"
-              alt="footer logo wonderful indonesia"
+              alt="logo kominfo"
             />
           </div>
         </div>

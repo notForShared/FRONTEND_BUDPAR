@@ -11,7 +11,7 @@
   import TourContentCard from "../../components/card/TourContentCard.svelte";
 
   async function fetchContent() {
-    let tours = await fetch(`${API}/tourist-attractions?paginate=8`);
+    let tours = await fetch(`${API}/tourist-attractions?paginate=4&page=1`);
     let restaurans = await fetch(`${API}/foods?paginate=8`);
     let hotels = await fetch(`${API}/hotels?paginate=8`);
 

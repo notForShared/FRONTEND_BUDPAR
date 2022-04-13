@@ -18,8 +18,8 @@
       alt="navbar-brand-1"
     />
     <img
-      src="/assets/logo/win.png"
-      class="w-auto h-16 hidden md:block pl-2"
+      src="/assets/logo/bud-tap.png"
+      class="w-auto h-16 hidden md:block px-3"
       alt="navbar-brand-1"
     />
     <div class="__brand-text flex flex-col justify-center">

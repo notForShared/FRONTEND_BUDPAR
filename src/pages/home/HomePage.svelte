@@ -17,8 +17,10 @@
 
   async function fetchData() {
     let tourAttraction = await fetch(`${API}/tourist-attractions`);
-    let news = await fetch(`${API}/articleByTag?tag=Event+Wisata&paginate=3`);
-    let activity = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
+    let news = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
+    let activity = await fetch(
+      `${API}/articleByTag?tag=Event+Wisata&paginate=3`
+    );
     let popularTour = await fetch(`${API}/tourist-attractions/popular`);
     let slider = await fetch(`${API}/sliders`);
 
@@ -126,7 +128,7 @@
     <img
       src="/assets/images/banner/banner-1.png"
       alt="promotional banner"
-      class="w-full h-full"
+      class="w-full h-full lg:h-[477px]"
     />
   </Lazy>
 
@@ -157,14 +159,14 @@
               />
             </div>
           {:then data}
-            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
               <div in:fade={{ duration: 200 }}>
-                <NewsCardComponent
+                <ActivityCardComponent
                   createdDate={created_at}
-                  newsTitle={title}
-                  newsThumb={thumb}
-                  newsExc={excerpt}
-                  newsSlug={slug}
+                  activityTitle={title}
+                  activityThumb={thumb}
+                  activityExc={excerpt}
+                  activitySlug={slug}
                 />
               </div>
             {/each}
@@ -198,14 +200,14 @@
               />
             </div>
           {:then data}
-            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
+            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
               <div in:fade={{ duration: 200 }}>
-                <ActivityCardComponent
+                <NewsCardComponent
                   createdDate={created_at}
-                  activityTitle={title}
-                  activityThumb={thumb}
-                  activityExc={excerpt}
-                  activitySlug={slug}
+                  newsTitle={title}
+                  newsThumb={thumb}
+                  newsExc={excerpt}
+                  newsSlug={slug}
                 />
               </div>
             {/each}
