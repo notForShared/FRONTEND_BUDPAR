@@ -1,7 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
 
-  import { API } from "../../lib/config";
+  import { API, BASEURI } from "../../lib/config";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import NewsCardComponent from "../../components/card/NewsCardComponent.svelte";
@@ -12,7 +12,6 @@
 
     if (news.status === 200) {
       let newsData = await news.json();
-      console.log(newsData.data.articles);
       return newsData.data;
     } else {
       throw new Error("Could not fetch data !");
@@ -21,6 +20,26 @@
 
   let getContent = fetchContent();
 </script>
+
+<!-- meta tag for SEO -->
+<svelte:head>
+  <title>Berita | Dinas Kebudayaan dan Pariwisata Kabupaten Tapin</title>
+  <meta
+    name="description"
+    content="Berita oleh Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+  />
+  <meta
+    name="keywords"
+    content="Berita oleh disbudpar kab tapin, berita disbudpar tapin"
+  />
+  <meta
+    name="author"
+    content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={`${BASEURI}#/news-list`} />
+</svelte:head>
+<!-- meta tag for SEO -->
 
 {#await getContent}
   <div class="w-full h-screen pb-24">
@@ -35,7 +54,7 @@
   <div class="__content-page-news" in:fade={{ duration: 500 }}>
     <div class="pt-36 relative">
       <img
-        src="/assets/images/dummy/john-towner-JgOeRuGD_Y4-unsplash(1).jpg"
+        src="/assets/images/placeholder/placeholder-bg.jpg"
         alt="placeholder"
         class="w-full h-[512px] object-cover"
       />

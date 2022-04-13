@@ -32,7 +32,7 @@
     content="Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href={`${BASEURI}#/map`} />
+  <link rel="canonical" href={`${BASEURI}#/direction`} />
 </svelte:head>
 <!-- meta tag for SEO -->
 

@@ -1,14 +1,38 @@
 <script>
-  import { push } from "svelte-spa-router";
+  import { push, link } from "svelte-spa-router";
+  import { API } from "../../lib/config";
+
   import MapPinHollowIcon from "../../assets/svg/MapPinHollowIcon.svelte";
   import SearchLightIcon from "../../assets/svg/SearchLightIcon.svelte";
 
-  let searchQuery;
+  let getPopularList = fetchPopularList();
+  let searchQuery = "";
+
+  async function fetchPopularList() {
+    let popular = await fetch(`${API}/tourist-attractions/popular`);
+
+    if (popular.status === 200) {
+      let popularDetail = await popular.json();
+      return popularDetail.data;
+    } else {
+      throw new Error("Cannot fetch data");
+    }
+  }
 
   function gotoContent() {
     if (searchQuery || searchQuery !== "") {
       let query = new URLSearchParams({ q: searchQuery });
-      push(`/content?${query}`);
+
+      push(`/search?${query.toString()}`);
+    }
+  }
+
+  function enterPress(event) {
+    if (event.keyCode === 13) {
+      if (searchQuery || searchQuery !== "" || searchQuery) {
+        let query = new URLSearchParams({ q: searchQuery });
+        push(`/search?${query.toString()}`);
+      }
     }
   }
 </script>
@@ -28,6 +52,7 @@
         class="border-2 bg-[#f5f5f5] border-[#00d6a1] rounded-lg h-10 w-11/12 px-2"
         type="text"
         bind:value={searchQuery}
+        on:keypress={enterPress}
       />
       <button
         class="flex items-center ml-2 mt-5 md:mt-0 px-2 py-2 text-white font-bold rounded-md bg-[#00d6a1]"
@@ -38,17 +63,32 @@
       </button>
     </div>
 
-    <div class="__popular-site pl-2 pt-4 text-[#18263e] inline-block">
-      <span>Popular : </span>
-      <a class="text-[#18263e] underline font-semibold" href="#!"
-        >Wisata Binuang</a
-      >
-      <a class="text-[#18263e] underline font-semibold" href="#!"
-        >Wisata Bungur</a
-      >
-      <a class="text-[#18263e] underline font-semibold" href="#!"
-        >Wisata Bukit Buluan</a
-      >
+    <div class="__popular-site pl-2 pt-4 text-[#18263e] inline-block w-full">
+      {#await getPopularList}
+        <div class="grid grid-cols-4 gap-1 animate-pulse">
+          <div class="col-span-1">
+            <div class="h-2 bg-[#18263e]/[.2] rounded" />
+          </div>
+          <div class="col-span-1">
+            <div class="h-2 bg-[#18263e]/[.2] rounded" />
+          </div>
+          <div class="col-span-2">
+            <div class="h-2 bg-[#18263e]/[.2] rounded" />
+          </div>
+        </div>
+      {:then data}
+        <span class="inline-block">Popular : </span>
+        {#each data as { uuid, name }}
+          <a
+            class="text-[#18263e] underline font-semibold pr-2 capitalize"
+            href={`/tour-detail?${new URLSearchParams({
+              title: name,
+              q: uuid,
+            }).toString()}`}
+            use:link>{name}</a
+          >
+        {/each}
+      {/await}
     </div>
   </div>
 </div>

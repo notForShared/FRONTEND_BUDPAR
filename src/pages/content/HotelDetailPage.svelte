@@ -28,7 +28,6 @@
     if (detail.status === 200) {
       let detailData = await detail.json();
       displayImage = `${ASSETS}/${detailData.data.hotel_detail.thumb}`;
-      console.log(detailData.data);
       return detailData.data;
     } else {
       throw new Error("Could not fetchin data !");
@@ -36,26 +35,6 @@
   }
 
   let detailData = getDetail();
-
-  let relatedPlaces = [
-    {
-      imageUrl: "/assets/images/dummy/neonbrand-iAftdIcgpFc-unsplash 1.png",
-      tourTitle: "wisata religi datu kabul",
-      tourAddress: "cls, Kabupaten Tapin",
-    },
-    {
-      imageUrl:
-        "/assets/images/dummy/francesca-tosolini-w1RE0lBbREo-unsplash.png",
-      tourTitle: "wisata bukit buluan",
-      tourAddress: "binuang, kabupaten tapin",
-    },
-    {
-      imageUrl:
-        "/assets/images/dummy/christopher-jolly-GqbU78bdJFM-unsplash.png",
-      tourTitle: "wisata religi datu nurraya",
-      tourAddress: "Tatakan, Kabupaten Tapin",
-    },
-  ];
 
   function showMainImage(imageUrl) {
     displayImage = `${imageUrl}`;
@@ -71,9 +50,7 @@
 
   <meta
     name="description"
-    content="{queryparams.get(
-      'type'
-    )} {title} di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
+    content="Hotel {title} di kabupaten tapin dari Dinas Kebudayaan dan Pariwisata Kabupaten Tapin"
   />
 
   <!-- svelte-ignore component-name-lowercase -->
@@ -245,47 +222,76 @@
       </div>
     </div>
 
-    <div class="__related-place">
+    <!-- <div class="__related-place">
       <Tabs>
         <TabList>
-          <Tab>Penginapan</Tab>
-          <Tab>Restoran</Tab>
-          <Tab>Wisata Terdekat</Tab>
+          {#if data.hotel.length > 0}
+            <Tab>Penginapan</Tab>
+          {/if}
+
+          {#if data.wisata.length > 0}
+            <Tab>Wisata Terdekat</Tab>
+          {/if}
+
+          {#if data.food.length > 0}
+            <Tab>Restoran</Tab>
+          {/if}
         </TabList>
 
-        <TabPanel>
-          <div
-            class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-          >
-            {#each relatedPlaces as object}
-              <TourContentCard {...object} />
-            {/each}
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div
-            class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-          >
-            {#each relatedPlaces as object}
-              <TourContentCard {...object} />
-            {/each}
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div>
+        {#if data.hotel.length > 0}
+          <TabPanel>
             <div
               class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
             >
-              {#each relatedPlaces as object}
-                <TourContentCard {...object} />
+              {#each data.hotels as { thumb, name, address, uuid }}
+                <HotelCardComponent
+                  imageUrl={`${ASSETS}/${thumb}`}
+                  hotelTitle={name}
+                  hotelAddress={address}
+                  hotelDetail={uuid}
+                />
               {/each}
             </div>
-          </div>
-        </TabPanel>
+          </TabPanel>
+        {/if}
+
+        {#if data.wisata.length > 0}
+          <TabPanel>
+            <div
+              class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+            >
+              {#each data.tours as { thumb, name, address, uuid }}
+                <TourContentCard
+                  imageUrl={`${ASSETS}/${thumb}`}
+                  tourTitle={name}
+                  tourAddress={address}
+                  tourDetail={uuid}
+                />
+              {/each}
+            </div>
+          </TabPanel>
+        {/if}
+
+        {#if data.food.length > 0}
+          <TabPanel>
+            <div>
+              <div
+                class="__content-tour-related py-16 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+              >
+                {#each data.food as { thumb, name, address, uuid }}
+                  <RestoCardComponent
+                    imageUrl={`${ASSETS}/${thumb}`}
+                    restoTitle={name}
+                    restoAddress={address}
+                    restoDetail={uuid}
+                  />
+                {/each}
+              </div>
+            </div>
+          </TabPanel>
+        {/if}
       </Tabs>
-    </div>
+    </div> -->
 
     <FooterComponent />
   </div>

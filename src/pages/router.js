@@ -6,6 +6,10 @@ export const routes = {
     asyncComponent: () => import('./home/HomePage.svelte')
   }),
 
+  "/search": wrap({
+    asyncComponent: () => import('./search/SearchPage.svelte')
+  }),
+
   // Map Page
   "/map": wrap({
     asyncComponent: () => import('./map/MapPage.svelte')
@@ -29,6 +33,10 @@ export const routes = {
   }),
 
   // Detail Page
+  "/article-detail": wrap({
+    asyncComponent: () => import('./content/ArticleDetailPage.svelte')
+  }),
+
   "/news-detail": wrap({
     asyncComponent: () => import('./content/NewsDetailPage.svelte')
   }),
