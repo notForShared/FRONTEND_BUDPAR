@@ -12,7 +12,7 @@
     <div class="__slider-wrapper relative">
       <Lazy height={699} fadeOption={{ delay: 200, duration: 500 }}>
         <img
-          class="w-full h-[699px]"
+          class="w-full lg:h-[699px]"
           src={`${ASSETS}/${bgImage}`}
           alt="slider content"
         />
