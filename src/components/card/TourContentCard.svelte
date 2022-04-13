@@ -11,9 +11,10 @@
   export let tourDetail;
 </script>
 
-<div class="__tour-content-card mx-auto">
+<div class="__tour-content-card">
   <div class="__tour-object-card-wrapper relative">
     <a
+      class="flex justify-center items-center"
       href="/tour-detail?{`${new URLSearchParams({
         title: tourTitle,
         q: tourDetail,
@@ -28,7 +29,9 @@
         />
       </Lazy>
 
-      <div class="__card-content absolute bottom-0 px-5 py-5 text-white">
+      <div
+        class="__card-content rounded-b-[20px] w-[291px] mx-2 px-6 absolute bottom-0 py-5 text-white"
+      >
         <h3 class="text-xl font-bold capitalize pb-2 __text-shadow">
           {tourTitle}
         </h3>
@@ -44,5 +47,14 @@
 <style>
   .__text-shadow {
     text-shadow: 0px 2px 3px #314c49;
+  }
+
+  .__card-content {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(0, 0, 0) 100%
+    );
   }
 </style>

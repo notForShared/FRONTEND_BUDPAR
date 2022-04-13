@@ -99,18 +99,27 @@
       <!-- logo -->
       <div class="w-full pt-12 md:pt-0">
         <div
-          class="__logo-wrapper flex justify-center md:justify-start lg:justify-center"
+          class="__logo-wrapper flex justify-center flex-col md:justify-start lg:justify-center"
         >
-          <img
-            class="w-20 h-auto"
-            src="/assets/logo/tapin.png"
-            alt="footer logo kab. tapin"
-          />
-          <img
-            class="w-32 h-auto ml-7"
-            src="/assets/logo/win.png"
-            alt="footer logo wonderful indonesia"
-          />
+          <div class="flex justify-center">
+            <img
+              class="w-20 h-auto"
+              src="/assets/logo/tapin.png"
+              alt="footer logo kab. tapin"
+            />
+            <img
+              class="w-32 h-auto ml-7"
+              src="/assets/logo/win.png"
+              alt="footer logo wonderful indonesia"
+            />
+          </div>
+          <div class="flex justify-center">
+            <img
+              class="w-[5.3rem] h-auto"
+              src="/assets/logo/kominfo.png"
+              alt="footer logo wonderful indonesia"
+            />
+          </div>
         </div>
       </div>
       <!-- logo -->
