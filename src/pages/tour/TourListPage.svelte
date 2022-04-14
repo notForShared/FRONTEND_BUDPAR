@@ -1,4 +1,5 @@
 <script>
+  import { onMount, onDestroy } from "svelte";
   import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
   import { fade } from "svelte/transition";
 
@@ -10,8 +11,26 @@
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
 
+  let test = true;
+
+  let observer = new IntersectionObserver(
+    (event) => {
+      let [entries] = event;
+      test = true;
+      console.log(entries.isIntersecting);
+      if (!entries.isIntersecting) {
+        test = false;
+        console.log(entries.isIntersecting);
+      }
+    },
+    {
+      root: document.querySelector(".__content-tour-related"),
+      rootMargin: "0px",
+    }
+  );
+
   async function fetchContent() {
-    let tours = await fetch(`${API}/tourist-attractions?paginate=4&page=1`);
+    let tours = await fetch(`${API}/tourist-attractions?paginate=8`);
     let restaurans = await fetch(`${API}/foods?paginate=8`);
     let hotels = await fetch(`${API}/hotels?paginate=8`);
 
@@ -35,6 +54,14 @@
   }
 
   let getContent = fetchContent();
+
+  onMount(() => {
+    observer.observe(document.querySelector(".__footer"));
+  });
+
+  onDestroy(() => {
+    observer.unobserve(document.querySelector(".__footer"));
+  });
 </script>
 
 <!-- meta tag for SEO -->
@@ -126,7 +153,7 @@
     {:then data}
       <TabPanel>
         <div
-          class="__content-tour-main py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
         >
           {#each data.tours as { thumb, name, address, uuid }}
             <TourContentCard
@@ -141,7 +168,7 @@
 
       <TabPanel>
         <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          class="__content-hotel-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
         >
           {#each data.hotels as { thumb, name, address, uuid }}
             <HotelCardComponent
@@ -156,7 +183,7 @@
 
       <TabPanel>
         <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+          class="__content-restaurans-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
         >
           {#each data.restaurans as { thumb, name, address, uuid }}
             <RestoCardComponent
@@ -170,6 +197,13 @@
       </TabPanel>
     {/await}
   </Tabs>
+
+  <div
+    class="h-32 mb-20 flex items-center justify-center"
+    in:fade={{ duration: 200 }}
+  >
+    <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
+  </div>
 
   <FooterComponent />
 </div>

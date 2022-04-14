@@ -71,11 +71,11 @@
     text-shadow: 0px 2px 3px #314c49;
   }
 
-  .__slider-dot {
+  /* .__slider-dot {
     bottom: 20%;
   }
 
   .__slider-dot a {
     margin: 0px 11px;
-  }
+  } */
 </style>
