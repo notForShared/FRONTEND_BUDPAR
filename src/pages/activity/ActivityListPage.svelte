@@ -7,11 +7,10 @@
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
   async function fetchContent() {
-    let news = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=8`);
+    let news = await fetch(`${API}/articleByTag?tag=Kegiatan`);
 
     if (news.status === 200) {
       let newsData = await news.json();
-      console.log(newsData.data.articles);
       return newsData.data;
     } else {
       throw new Error("Could not fetch data !");

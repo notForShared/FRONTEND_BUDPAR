@@ -1,62 +1,165 @@
 <script>
   import { onMount, onDestroy } from "svelte";
-  import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
   import { fade } from "svelte/transition";
 
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
+  import ContentLoadAnimationComponent from "../../components/animation/ContentLoadAnimationComponent.svelte";
   import RestoCardComponent from "../../components/card/RestoCardComponent.svelte";
   import HotelCardComponent from "../../components/card/HotelCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
   import TourContentCard from "../../components/card/TourContentCard.svelte";
+  import TabsComponent from "../../components/tabs/TabsComponent.svelte";
 
-  let test = true;
+  let tabItems = ["Wisata", "Penginapan", "Restoran"];
+  let showContentLoader = true;
+  let activeTabs = "Wisata";
+  let showLoader = false;
+  let currentPage = 0;
+  let listData = [];
+  let nextPage = 0;
+  let lastPage = 0;
+  let perPage = 8;
 
   let observer = new IntersectionObserver(
     (event) => {
-      let [entries] = event;
-      test = true;
-      console.log(entries.isIntersecting);
-      if (!entries.isIntersecting) {
-        test = false;
-        console.log(entries.isIntersecting);
+      if (lastPage !== currentPage) {
+        let [entries] = event;
+        if (entries.isIntersecting) {
+          showLoader = true;
+
+          switch (activeTabs) {
+            case "Wisata":
+              fetchNextData(nextPage, "tourist-attractions").then((data) => {
+                listData.push.apply(listData, data.listData);
+                listData = listData;
+                nextPage = data.nextPage;
+                lastPage = data.lastPage;
+                currentPage = data.currentPage;
+                showLoader = false;
+              });
+
+              break;
+
+            case "Penginapan":
+              fetchNextData(nextPage, "hotels").then((data) => {
+                listData.push.apply(listData, data.listData);
+                listData = listData;
+                nextPage = data.nextPage;
+                lastPage = data.lastPage;
+                currentPage = data.currentPage;
+                showLoader = false;
+              });
+
+              break;
+
+            case "Restoran":
+              fetchNextData(nextPage, "foods").then((data) => {
+                listData.push.apply(listData, data.listData);
+                listData = listData;
+                nextPage = data.nextPage;
+                lastPage = data.lastPage;
+                currentPage = data.currentPage;
+                showLoader = false;
+              });
+
+              break;
+          }
+        } else {
+          showLoader = false;
+        }
       }
     },
     {
-      root: document.querySelector(".__content-tour-related"),
+      root: document.querySelector(".__content-page-tour"),
       rootMargin: "0px",
+      threshold: 0.5,
     }
   );
 
-  async function fetchContent() {
-    let tours = await fetch(`${API}/tourist-attractions?paginate=8`);
-    let restaurans = await fetch(`${API}/foods?paginate=8`);
-    let hotels = await fetch(`${API}/hotels?paginate=8`);
+  function initData() {
+    fetchData("tourist-attractions").then((data) => {
+      listData = data.listData;
+      nextPage = data.nextPage;
+      lastPage = data.lastPage;
+      currentPage = data.currentPage;
+      showContentLoader = false;
+    });
+  }
 
-    if (
-      tours.status === 200 &&
-      hotels.status === 200 &&
-      restaurans.status === 200
-    ) {
-      let toursData = await tours.json();
-      let hotelsData = await hotels.json();
-      let restauransData = await restaurans.json();
+  function changeTabs(event) {
+    showContentLoader = true;
+    if (event.detail === "Wisata") {
+      fetchData("tourist-attractions").then((data) => {
+        listData = data.listData;
+        nextPage = data.nextPage;
+        lastPage = data.lastPage;
+        currentPage = data.currentPage;
+        showContentLoader = false;
+        activeTabs = event.detail;
+      });
+    } else if (event.detail === "Penginapan") {
+      fetchData("hotels").then((data) => {
+        listData = data.listData;
+        nextPage = data.nextPage;
+        lastPage = data.lastPage;
+        currentPage = data.currentPage;
 
-      return {
-        tours: toursData.data.data,
-        hotels: hotelsData.data.data,
-        restaurans: restauransData.data.data,
-      };
-    } else {
-      throw new Error("Could not fetch data !");
+        showContentLoader = false;
+        activeTabs = event.detail;
+      });
+    } else if (event.detail === "Restoran") {
+      fetchData("foods").then((data) => {
+        listData = data.listData;
+        nextPage = data.nextPage;
+        lastPage = data.lastPage;
+        currentPage = data.currentPage;
+
+        showContentLoader = false;
+        activeTabs = event.detail;
+      });
     }
   }
 
-  let getContent = fetchContent();
+  async function fetchData(endpoint) {
+    let list = await fetch(`${API}/${endpoint}?paginate=${perPage}&page=1`);
+
+    if (list.status === 200) {
+      let listData = await list.json();
+
+      return {
+        listData: listData.data.data,
+        nextPage: listData.data.current_page + 1,
+        lastPage: listData.data.last_page,
+        currentPage: listData.data.current_page,
+      };
+    } else {
+      throw new Error("Cannot fetch data !");
+    }
+  }
+
+  async function fetchNextData(next, endpoint) {
+    let list = await fetch(
+      `${API}/${endpoint}?paginate=${perPage}&page=${next}`
+    );
+
+    if (list.status === 200) {
+      let listData = await list.json();
+      return {
+        listData: listData.data.data,
+        nextPage: listData.data.current_page + 1,
+        lastPage: listData.data.last_page,
+        currentPage: listData.data.current_page,
+      };
+    } else {
+      throw new Error("Cannot fetch data !");
+    }
+  }
 
   onMount(() => {
     observer.observe(document.querySelector(".__footer"));
+    initData();
   });
 
   onDestroy(() => {
@@ -112,98 +215,73 @@
     </div>
   </div>
 
-  <Tabs>
-    <TabList>
-      <Tab>Wisata</Tab>
-      <Tab>Penginapan</Tab>
-      <Tab>Restoran</Tab>
-    </TabList>
+  <TabsComponent {tabItems} activeItem={activeTabs} on:tabChange={changeTabs} />
 
-    {#await getContent}
-      <TabPanel>
-        <div class="w-full h-screen pb-24">
-          <div
-            class="h-screen flex items-center justify-center py-32"
-            in:fade={{ duration: 200 }}
-          >
-            <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
-          </div>
-        </div>
-      </TabPanel>
-      <TabPanel>
-        <div class="w-full h-screen pb-24">
-          <div
-            class="h-screen flex items-center justify-center py-32"
-            in:fade={{ duration: 200 }}
-          >
-            <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
-          </div>
-        </div>
-      </TabPanel>
-      <TabPanel>
-        <div class="w-full h-screen pb-24">
-          <div
-            class="h-screen flex items-center justify-center py-32"
-            in:fade={{ duration: 200 }}
-          >
-            <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
-          </div>
-        </div>
-      </TabPanel>
-    {:then data}
-      <TabPanel>
-        <div
-          class="__content-tour-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-        >
-          {#each data.tours as { thumb, name, address, uuid }}
-            <TourContentCard
-              imageUrl={`${ASSETS}/${thumb}`}
-              tourTitle={name}
-              tourAddress={address}
-              tourDetail={uuid}
-            />
-          {/each}
-        </div>
-      </TabPanel>
+  {#if showContentLoader}
+    <div class="w-full h-screen pb-24">
+      <div
+        class="h-screen flex items-center justify-center py-32"
+        in:fade={{ duration: 200 }}
+      >
+        <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
+      </div>
+    </div>
+  {/if}
 
-      <TabPanel>
-        <div
-          class="__content-hotel-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-        >
-          {#each data.hotels as { thumb, name, address, uuid }}
-            <HotelCardComponent
-              imageUrl={`${ASSETS}/${thumb}`}
-              hotelTitle={name}
-              hotelAddress={address}
-              hotelDetail={uuid}
-            />
-          {/each}
-        </div>
-      </TabPanel>
+  {#if activeTabs === "Wisata"}
+    <div
+      in:fade={{ duration: 500 }}
+      class="__content-tour-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+    >
+      {#each listData as { thumb, name, address, uuid }}
+        <TourContentCard
+          imageUrl={`${ASSETS}/${thumb}`}
+          tourTitle={name}
+          tourAddress={address}
+          tourDetail={uuid}
+        />
+      {/each}
+    </div>
+  {:else if activeTabs === "Penginapan"}
+    <div
+      in:fade={{ duration: 500 }}
+      class="__content-hotel-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+    >
+      {#each listData as { thumb, name, address, uuid }}
+        <HotelCardComponent
+          imageUrl={`${ASSETS}/${thumb}`}
+          hotelTitle={name}
+          hotelAddress={address}
+          hotelDetail={uuid}
+        />
+      {/each}
+    </div>
+  {:else if activeTabs === "Restoran"}
+    <div
+      in:fade={{ duration: 500 }}
+      class="__content-resto-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+    >
+      {#each listData as { thumb, name, address, uuid }}
+        <RestoCardComponent
+          imageUrl={`${ASSETS}/${thumb}`}
+          restoTitle={name}
+          restoAddress={address}
+          restoDetail={uuid}
+        />
+      {/each}
+    </div>
+  {/if}
 
-      <TabPanel>
-        <div
-          class="__content-restaurans-related py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
-        >
-          {#each data.restaurans as { thumb, name, address, uuid }}
-            <RestoCardComponent
-              imageUrl={`${ASSETS}/${thumb}`}
-              restoTitle={name}
-              restoAddress={address}
-              restoDetail={uuid}
-            />
-          {/each}
-        </div>
-      </TabPanel>
-    {/await}
-  </Tabs>
-
-  <div
-    class="h-32 mb-20 flex items-center justify-center"
-    in:fade={{ duration: 200 }}
-  >
-    <LoadingCircleAnimationComponent size={{ w: "w-12", h: "h-12" }} />
-  </div>
+  {#if showLoader}
+    <div class="fixed top-0 flex mt-12 w-full justify-center items-center">
+      <div
+        class="flex justify-center drop-shadow-lg items-center rounded-full bg-white w-14 h-14"
+        transition:fade={{ duration: 200 }}
+      >
+        <ContentLoadAnimationComponent size={{ w: "w-10", h: "h-10" }} />
+      </div>
+    </div>
+  {/if}
 
   <FooterComponent />
 </div>
