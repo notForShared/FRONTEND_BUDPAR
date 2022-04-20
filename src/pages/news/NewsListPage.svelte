@@ -8,7 +8,7 @@
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
   async function fetchContent() {
-    let news = await fetch(`${API}/articleByTag?tag=Event+Wisata`);
+    let news = await fetch(`${API}/articles`);
 
     if (news.status === 200) {
       let newsData = await news.json();

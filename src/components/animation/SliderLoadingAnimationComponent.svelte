@@ -4,7 +4,7 @@
   <div class="__slider-item">
     <div class="__slider-wrapper relative">
       <img
-        class="w-full h-full lg:h-[699px] animate-pulse"
+        class="w-full h-[699px] object-cover animate-pulse"
         src="/assets/images/placeholder/banner-load.png"
         alt="slider content"
       />

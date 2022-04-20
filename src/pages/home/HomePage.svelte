@@ -5,9 +5,10 @@
 
   import SliderLoadingAnimationComponent from "../../components/animation/SliderLoadingAnimationComponent.svelte";
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
+  import BannerLoadAnimationComponent from "../../components/animation/BannerLoadAnimationComponent.svelte";
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
-  import ActivityCardComponent from "../../components/card/ActivityCardComponent.svelte";
+  import EventCardComponent from "../../components/card/EventCardComponent.svelte";
   import NewsCardComponent from "../../components/card/NewsCardComponent.svelte";
   import SliderComponent from "../../components/slider/SliderComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
@@ -17,32 +18,36 @@
 
   async function fetchData() {
     let tourAttraction = await fetch(`${API}/tourist-attractions`);
-    let news = await fetch(`${API}/articleByTag?tag=Kegiatan&paginate=3`);
+    let news = await fetch(`${API}/articles?paginate=3`);
     let activity = await fetch(
       `${API}/articleByTag?tag=Event+Wisata&paginate=3`
     );
     let popularTour = await fetch(`${API}/tourist-attractions/popular`);
     let slider = await fetch(`${API}/sliders`);
+    let banner = await fetch(`${API}/banner`);
 
     if (
       tourAttraction.status === 200 &&
       popularTour.status === 200 &&
       news.status === 200 &&
       activity.status === 200 &&
-      slider.status === 200
+      slider.status === 200 &&
+      banner.status === 200
     ) {
       let tourAttractionData = await tourAttraction.json();
       let popularList = await popularTour.json();
       let activityData = await activity.json();
       let newsData = await news.json();
       let sliderData = await slider.json();
+      let bannerData = await banner.json();
 
       return {
         touristAttractions: tourAttractionData.data.data,
-        newsData: newsData.data.articles,
+        newsData: newsData.data.data,
         activityData: activityData.data.articles,
         popularList: popularList.data,
-        slidersImage: sliderData.data[0].image,
+        slidersImage: sliderData.data,
+        bannerImage: `${ASSETS}/${bannerData.data.banner}`,
       };
     } else {
       throw new Error("Could not fetch data !");
@@ -123,14 +128,17 @@
   </div>
 
   <!-- promotional banner (changeable) -->
-
-  <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
-    <img
-      src="/assets/images/banner/banner-1.png"
-      alt="promotional banner"
-      class="w-full h-full lg:h-[477px]"
-    />
-  </Lazy>
+  {#await getData}
+    <BannerLoadAnimationComponent lgHeight="h-[477px]" />
+  {:then data}
+    <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
+      <img
+        src={`${data.bannerImage}`}
+        alt="promotional banner"
+        class="w-full h-full lg:h-[477px]"
+      />
+    </Lazy>
+  {/await}
 
   <!-- promotional banner (changeable) -->
 
@@ -159,14 +167,14 @@
               />
             </div>
           {:then data}
-            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
+            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
               <div in:fade={{ duration: 200 }}>
-                <ActivityCardComponent
+                <NewsCardComponent
                   createdDate={created_at}
-                  activityTitle={title}
-                  activityThumb={thumb}
-                  activityExc={excerpt}
-                  activitySlug={slug}
+                  newsTitle={title}
+                  newsThumb={thumb}
+                  newsExc={excerpt}
+                  newsSlug={slug}
                 />
               </div>
             {/each}
@@ -178,10 +186,10 @@
     <div class="content __activity">
       <div class="__wrapper flex justify-between items-center">
         <div class="__section-title">
-          <h1 class="font-bold text-3xl pb-2">Kegiatan</h1>
+          <h1 class="font-bold text-3xl pb-2">Event</h1>
           <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
         </div>
-        <a class="font-bold text-md underline" href="/activity-list" use:link
+        <a class="font-bold text-md underline" href="/event-list" use:link
           >Lihat Semua</a
         >
       </div>
@@ -200,14 +208,14 @@
               />
             </div>
           {:then data}
-            {#each data.newsData as { created_at, title, thumb, slug, excerpt }}
+            {#each data.activityData as { created_at, title, thumb, slug, excerpt }}
               <div in:fade={{ duration: 200 }}>
-                <NewsCardComponent
+                <EventCardComponent
                   createdDate={created_at}
-                  newsTitle={title}
-                  newsThumb={thumb}
-                  newsExc={excerpt}
-                  newsSlug={slug}
+                  eventTitle={title}
+                  eventThumb={thumb}
+                  eventExc={excerpt}
+                  eventSlug={slug}
                 />
               </div>
             {/each}

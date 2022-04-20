@@ -65,14 +65,12 @@
 {:then data}
   <div class="__content-page-news" in:fade={{ duration: 200 }}>
     <div class="pt-36 relative">
-      {#key displayImage}
-        <img
-          src={displayImage}
-          alt={title}
-          class="w-full h-[512px] object-cover"
-          in:fly={{ y: -20 }}
-        />
-      {/key}
+      <img
+        src={displayImage}
+        alt={title}
+        class="w-full h-[512px] object-cover"
+        in:fly={{ y: -20 }}
+      />
       <div class="__content-title absolute bottom-5 px-7 md:px-14 lg:px-32">
         <div class="__content-subtitle">
           <h1 class="text-white font-bold text-xl md:text-3xl uppercase">
@@ -95,22 +93,6 @@
     <div
       class="__content-main grid grid-cols-12 px-7 gap-y-8 lg:gap-y-16 md:px-7 lg:px-32 py-7 lg:py-24"
     >
-      <div class="col-span-full">
-        <div class="flex">
-          <a
-            class="px-3 duration-300 hover:drop-shadow-lg"
-            href="#!"
-            on:click|preventDefault={() =>
-              showMainImage(`${ASSETS}/${data.article_detail.thumb}`)}
-          >
-            <img
-              src={`${ASSETS}/${data.article_detail.thumb}`}
-              class="drop-shadow-md w-[120px] h-[96px] rounded"
-              alt={title}
-            />
-          </a>
-        </div>
-      </div>
       <div class="col-span-full lg:col-span-full">
         <h2 class="font-bold text-2xl uppercase">
           {data.article_detail.title}
