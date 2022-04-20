@@ -7,9 +7,9 @@
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
+  import FacilityComponent from "../../components/facility/FacilityComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
-  import TourContentCard from "../../components/card/TourContentCard.svelte";
 
   import PhoneCircleGreenIcon from "../../assets/svg/PhoneCircleGreenIcon.svelte";
   import WorldCircleGreenIcon from "../../assets/svg/WorldCircleGreenIcon.svelte";
@@ -27,6 +27,7 @@
 
     if (detail.status === 200) {
       let detailData = await detail.json();
+      console.log(detailData);
       displayImage = `${ASSETS}/${detailData.data.hotel_detail.thumb}`;
       return detailData.data;
     } else {
@@ -140,6 +141,15 @@
         </div>
       </div>
       <div class="col-span-full lg:col-span-8">
+        <div class="flex pb-6">
+          {#if data.hotel_detail.facilities.length > 0}
+            {#each data.hotel_detail.facilities as { name, logo }}
+              <div class="px-12 flex items-center">
+                <FacilityComponent {name} image={logo} />
+              </div>
+            {/each}
+          {/if}
+        </div>
         <h2 class="font-bold text-2xl uppercase">
           {data.hotel_detail.name}
         </h2>
@@ -148,7 +158,7 @@
         </p>
       </div>
       <div class="col-span-full lg:col-span-4 lg:px-7">
-        <div class="w-full flex items-center py-5">
+        <div class="w-full flex items-center pb-5">
           <MapFoldIcon />
           <h3 class="font-bold text-2xl pl-4">Maps</h3>
         </div>

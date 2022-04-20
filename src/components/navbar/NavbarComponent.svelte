@@ -25,7 +25,7 @@
     <div class="__brand-text flex flex-col justify-center">
       <a href="/" use:link>
         <h1 class="w-full block font-extrabold text-xl md:text-1xl lg:text-2xl">
-          Dinas Pariwisata
+          Dinas Kebudayaan dan Pariwisata
         </h1>
         <span
           class="w-full block font-light lg:font-extralight md:text-xl lg:text-2xl"

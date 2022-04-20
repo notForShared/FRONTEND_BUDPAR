@@ -12,7 +12,7 @@
   import TourContentCard from "../../components/card/TourContentCard.svelte";
   import TabsComponent from "../../components/tabs/TabsComponent.svelte";
 
-  let tabItems = ["Wisata", "Penginapan", "Restoran"];
+  let tabItems = ["Wisata", "Penginapan", "Rumah Makan"];
   let showContentLoader = true;
   let activeTabs = "Wisata";
   let showLoader = false;
@@ -20,7 +20,7 @@
   let listData = [];
   let nextPage = 0;
   let lastPage = 0;
-  let perPage = 8;
+  let perPage = 4;
 
   let observer = new IntersectionObserver(
     (event) => {
@@ -54,7 +54,7 @@
 
               break;
 
-            case "Restoran":
+            case "Rumah Makan":
               fetchNextData(nextPage, "foods").then((data) => {
                 listData.push.apply(listData, data.listData);
                 listData = listData;
@@ -109,7 +109,7 @@
         showContentLoader = false;
         activeTabs = event.detail;
       });
-    } else if (event.detail === "Restoran") {
+    } else if (event.detail === "Rumah Makan") {
       fetchData("foods").then((data) => {
         listData = data.listData;
         nextPage = data.nextPage;
@@ -256,7 +256,7 @@
         />
       {/each}
     </div>
-  {:else if activeTabs === "Restoran"}
+  {:else if activeTabs === "Rumah Makan"}
     <div
       in:fade={{ duration: 500 }}
       class="__content-resto-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"

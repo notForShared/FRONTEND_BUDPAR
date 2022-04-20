@@ -1,81 +1,75 @@
 <script>
-  import Lazy from "svelte-lazy";
+  import Carousel from "svelte-carousel";
   import { ASSETS } from "../../lib/config";
 
   export let bgImage;
 </script>
 
-<!-- svelte-ignore a11y-missing-content -->
 <div class="__slider relative">
-  <!-- append more item in here -->
   <div class="__slider-item">
     <div class="__slider-wrapper relative">
-      <Lazy height={699} fadeOption={{ delay: 200, duration: 500 }}>
-        <img
-          class="w-full lg:h-[699px]"
-          src={`${ASSETS}/${bgImage}`}
-          alt="slider content"
-        />
-      </Lazy>
+      <Carousel
+        autoplay
+        autoplayDuration={2000}
+        arrows={false}
+        pauseOnFocus={true}
+        swiping={true}
+        infinite={true}
+        let:currentPageIndex
+        let:pagesCount
+        let:showPage
+      >
+        <div
+          slot="dots"
+          class="__slider-dot absolute bottom-10 lg:bottom-32 w-full flex justify-center"
+        >
+          <div class="flex flex-row">
+            {#each Array(pagesCount) as _, pageIndex (pageIndex)}
+              <!-- svelte-ignore a11y-missing-content -->
+              <a
+                href="#!"
+                on:click|preventDefault={() => showPage(pageIndex)}
+                class:__active={currentPageIndex === pageIndex}
+                class="rounded-full mx-2 border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
+              />
+            {/each}
+          </div>
+        </div>
+        {#each bgImage as { id, image, name }}
+          <img
+            key={id}
+            class="w-full object-cover h-[699px]"
+            src={`${ASSETS}/${image}`}
+            alt={name}
+          />
+        {/each}
+      </Carousel>
 
       <div
-        class="flex flex-col justify-center items-center absolute inset-0 w-full h-auto"
+        class="flex absolute bottom-[40%] justify-center flex-col items-center w-full"
       >
         <h2
-          class="uppercase tracking-[.5em] text-white text-md lg:text-3xl lg:mb-5"
+          class="uppercase tracking-[.5em] text-white text-xl md:text-3xl lg:mb-5"
         >
           jelajahi
         </h2>
+
         <h1
-          class="capitalize text-xl lg:text-6xl font-bold text-white lg:pb-14 __text-shadow"
+          class="capitalize text-2xl md:text-6xl font-bold text-white lg:pb-14 __text-shadow"
         >
           kabupaten tapin
         </h1>
-        <div class="w-2/6">
-          <!-- <p class="text-white text-center hidden lg:block">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-            maxime tenetur, possimus error officiis quis vero rerum, minima illo
-            dolorum magnam! Laudantium a voluptatibus consequuntur explicabo
-            sit. Dolores, esse hic!
-          </p> -->
-        </div>
       </div>
     </div>
   </div>
-
-  <!-- <div class="__slider-dot absolute w-full flex justify-center">
-    <div class="flex flex-row">
-
-      <a
-        href="#!"
-        class="rounded-full border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
-      />
-      <a
-        href="#!"
-        class="rounded-full border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
-      />
-      <a
-        href="#!"
-        class="rounded-full border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
-      />
-      <a
-        href="#!"
-        class="rounded-full border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
-      />
-    </div>
-  </div> -->
 </div>
 
 <style>
+  .__active {
+    background-color: rgb(45 212 191);
+    border-color: rgb(255, 255, 255);
+  }
   .__text-shadow {
     text-shadow: 0px 2px 3px #314c49;
   }
-
-  /* .__slider-dot {
-    bottom: 20%;
-  }
-
-  .__slider-dot a {
-    margin: 0px 11px;
-  } */
 </style>

@@ -24,8 +24,8 @@ export const routes = {
     asyncComponent: () => import('./tour/TourListPage.svelte')
   }),
 
-  "/activity-list": wrap({
-    asyncComponent: () => import('./activity/ActivityListPage.svelte')
+  "/event-list": wrap({
+    asyncComponent: () => import('./event/EventListPage.svelte')
   }),
 
   "/news-list": wrap({
@@ -41,8 +41,8 @@ export const routes = {
     asyncComponent: () => import('./content/NewsDetailPage.svelte')
   }),
   
-  "/activity-detail": wrap({
-    asyncComponent: () => import('./content/ActivityDetailPage.svelte')
+  "/event-detail": wrap({
+    asyncComponent: () => import('./content/EventDetailPage.svelte')
   }),
 
   "/tour-detail": wrap({
