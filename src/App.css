@@ -27,10 +27,12 @@
   display: inherit!important;
 }
 
+/* Tailwind overrider */
+:focus-visible {
+  outline: none;
+}
+
 /* forcing leaflet to center popup */
-/* .leaflet-popup {
-  left: -40px !important;
-} */
 
 @media (max-width: 640px) {
   .leaflet-bottom.leaflet-right,

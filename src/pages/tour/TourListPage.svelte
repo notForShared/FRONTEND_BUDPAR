@@ -217,6 +217,50 @@
 
   <TabsComponent {tabItems} activeItem={activeTabs} on:tabChange={changeTabs} />
 
+  <div class="py-5 px-32 flex justify-end">
+    <div class="group relative">
+      <button
+        class="__dropdown-button border-2 flex rounded-full border-transparent bg-[#00d6a1] text-white font-bold px-5 py-3 duration-500 hover:text-white hover:border-transparent hover:bg-[#00a97f]"
+      >
+        Kategori Wisata
+      </button>
+      <div
+        tabindex="0"
+        class="__dropdown border-2 bg-slate-100 invisible border-transparent rounded w-60 absolute right-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:outline-none group-focus-within:opacity-100 group-focus-within:translate-y-4"
+      >
+        <ul class="py-1">
+          <li>
+            <a
+              href="#!"
+              on:click|preventDefault={(e) => test(e)}
+              class="block px-4 py-2 text-[#00d6a1] hover:text-white duration-300 hover:bg-[#00d6a1]"
+            >
+              Wisata Alam
+            </a>
+          </li>
+          <li>
+            <a
+              href="#!"
+              on:click|preventDefault={(e) => test(e)}
+              class="block px-4 py-2 text-[#00d6a1] hover:text-white duration-300 hover:bg-[#00d6a1]"
+            >
+              Wisata Religi
+            </a>
+          </li>
+          <li>
+            <a
+              href="#!"
+              on:click|preventDefault={(e) => test(e)}
+              class="block px-4 py-2 text-[#00d6a1] hover:text-white duration-300 hover:bg-[#00d6a1]"
+            >
+              Wisata Buatan
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   {#if showContentLoader}
     <div class="w-full h-screen pb-24">
       <div
@@ -231,7 +275,7 @@
   {#if activeTabs === "Wisata"}
     <div
       in:fade={{ duration: 500 }}
-      class="__content-tour-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      class="__content-tour-list pt-5 pb-32 md:px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14"
     >
       {#each listData as { thumb, name, address, uuid }}
         <TourContentCard
@@ -245,7 +289,7 @@
   {:else if activeTabs === "Penginapan"}
     <div
       in:fade={{ duration: 500 }}
-      class="__content-hotel-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      class="__content-hotel-list pt-5 pb-32 md:px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14"
     >
       {#each listData as { thumb, name, address, uuid }}
         <HotelCardComponent
@@ -259,7 +303,7 @@
   {:else if activeTabs === "Rumah Makan"}
     <div
       in:fade={{ duration: 500 }}
-      class="__content-resto-list py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
+      class="__content-resto-list pt-5 pb-32 md:px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14"
     >
       {#each listData as { thumb, name, address, uuid }}
         <RestoCardComponent
@@ -287,6 +331,10 @@
 </div>
 
 <style>
+  .__dropdown {
+    z-index: 1000;
+  }
+
   :global(.svelte-tabs__tab-list) {
     display: flex !important;
     justify-content: start;
