@@ -17,7 +17,9 @@
     >
       <!-- info -->
       <div class="w-full text-center pt-12 md:pt-0 md:text-left">
-        <h1 class="text-3xl font-bold capitalize">dinas pariwisata</h1>
+        <h1 class="text-3xl font-bold capitalize">
+          dinas kebudayaan dan pariwisata
+        </h1>
         <h3 class="text-2xl capitalize">Kabupaten Tapin</h3>
         <div
           class="__office-address pt-3 flex items-center justify-center md:justify-start"
@@ -33,10 +35,10 @@
       <!-- info -->
 
       <!-- contact -->
-      <div class="w-full text-center pt-12 md:pt-0 md:text-left">
+      <div class="w-full text-center pt-12 md:pt-0">
         <span class="text-2xl font-bold capitalize">Kontak Kami</span>
         <div
-          class="__contact-info pt-3 flex flex-col items-center md:items-start"
+          class="__contact-info pt-3 md:pl-10 flex flex-col items-center md:items-start"
         >
           <div class="__phone flex items-center">
             <FooterPhoneIcon />
@@ -103,12 +105,12 @@
         >
           <div class="flex justify-center">
             <img
-              class="w-32 h-auto"
+              class="w-[150px] h-[64px]"
               src="/assets/logo/win.png"
               alt="footer logo wonderful indonesia"
             />
             <img
-              class="w-20 h-auto ml-8"
+              class="w-20 h-auto ml-3"
               src="/assets/logo/tapin.png"
               alt="footer logo kab. tapin"
             />
