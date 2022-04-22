@@ -73,7 +73,9 @@
   }
 
   async function getTourListByCategory(id) {
-    let tour = await fetch(`${API}/tourist-attractions/${id}/byCategory`);
+    let tour = await fetch(
+      `${API}/tourist-attractions/${id}/byCategory?paginate=4`
+    );
 
     if (tour.status === 200) {
       let tourData = await tour.json();
@@ -97,6 +99,7 @@
   function changeContent(e, id, name) {
     let ddTextTarget = document.querySelector(".__dd-text");
     let categoryElement = e.target;
+    console.log(id);
     tourLoading = true;
     tourList = [];
     getTourListByCategory(id).then((data) => {
