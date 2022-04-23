@@ -12,7 +12,7 @@
 
     if (news.status === 200) {
       let newsData = await news.json();
-      return newsData.data;
+      return newsData.data.data;
     } else {
       throw new Error("Could not fetch data !");
     }
@@ -82,7 +82,7 @@
     <div
       class="__content-tour-main py-32 md:px-10 lg:px-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-7 gap-y-11 md:gap-y-14 pb-24"
     >
-      {#each data.articles as { created_at, title, thumb, slug, excerpt }}
+      {#each data as { created_at, title, thumb, slug, excerpt }}
         <div in:fade={{ duration: 200 }}>
           <NewsCardComponent
             createdDate={created_at}
