@@ -7,3 +7,6 @@
 
 *.zip
 env.*
+
+.yarn
+.pnp.*
