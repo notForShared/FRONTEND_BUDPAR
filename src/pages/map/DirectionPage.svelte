@@ -8,9 +8,9 @@
   let destination = {
     lat: new URLSearchParams($querystring).get("lat"),
     lng: new URLSearchParams($querystring).get("lng"),
+    destType: new URLSearchParams($querystring).get("type"),
+    destTitle: new URLSearchParams($querystring).get("title"),
   };
-
-  let destType = new URLSearchParams($querystring).get("type");
 </script>
 
 <!-- meta tag for SEO -->
@@ -40,5 +40,5 @@
   in:fade={{ duration: 500 }}
   class="flex items-center justify-center w-full h-screen"
 >
-  <DirectionComponent dest={destination} {destType} />
+  <DirectionComponent {destination} />
 </div>

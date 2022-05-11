@@ -99,7 +99,6 @@
   function changeContent(e, id, name) {
     let ddTextTarget = document.querySelector(".__dd-text");
     let categoryElement = e.target;
-    console.log(id);
     tourLoading = true;
     tourList = [];
     getTourListByCategory(id).then((data) => {

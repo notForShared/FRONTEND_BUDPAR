@@ -1,14 +1,17 @@
 <script>
-  import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
   import { querystring, link, location } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import Lazy from "svelte-lazy";
 
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
+  import { openModal } from "../../lib/module/modal";
+
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import FacilityComponent from "../../components/facility/FacilityComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
+  import ModalComponent from "../../components/modal/ModalComponent.svelte";
+
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
   import PhoneCircleGreenIcon from "../../assets/svg/PhoneCircleGreenIcon.svelte";
@@ -27,7 +30,6 @@
 
     if (detail.status === 200) {
       let detailData = await detail.json();
-      console.log(detailData);
       displayImage = `${ASSETS}/${detailData.data.hotel_detail.thumb}`;
       return detailData.data;
     } else {
@@ -36,10 +38,18 @@
   }
 
   let detailData = getDetail();
+  let ModalImage = "";
+  let modalAlt = "";
 
-  function showMainImage(imageUrl) {
-    displayImage = `${imageUrl}`;
+  function openModalImage(link, alt) {
+    ModalImage = link;
+    modalAlt = alt;
+    openModal("__photoModal");
   }
+
+  // function showMainImage(imageUrl) {
+  //   displayImage = `${imageUrl}`;
+  // }
 </script>
 
 <svelte:head>
@@ -74,14 +84,11 @@
 {:then data}
   <div class="__content-page-hotel" in:fade={{ duration: 200 }}>
     <div class="pt-36 relative">
-      {#key displayImage}
-        <img
-          src={displayImage}
-          alt={title}
-          class="w-full h-[512px] object-cover"
-          in:fly={{ y: -20 }}
-        />
-      {/key}
+      <img
+        src={displayImage}
+        alt={title}
+        class="w-full h-[512px] object-cover"
+      />
       <div class="__content-title absolute bottom-5 px-7 md:px-14 lg:px-32">
         {#if data.hotel_detail.distriction.name}
           <div class="flex pb-3">
@@ -111,7 +118,7 @@
                 class="px-3 duration-300 hover:drop-shadow-lg"
                 href="#!"
                 on:click|preventDefault={() =>
-                  showMainImage(`${ASSETS}/${image}`)}
+                  openModalImage(`${ASSETS}/${image}`, title)}
               >
                 <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                   <img
@@ -127,7 +134,7 @@
               class="px-3 duration-300 hover:drop-shadow-lg"
               href="#!"
               on:click|preventDefault={() =>
-                showMainImage(`${ASSETS}/${data.hotel_detail.thumb}`)}
+                openModalImage(`${ASSETS}/${data.hotel_detail.thumb}`, title)}
             >
               <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                 <img
@@ -174,6 +181,7 @@
         <a
           href="/direction?{new URLSearchParams({
             type: 'hotel',
+            title: `${data.wisata_detail.name}`,
             lat: `${data.hotel_detail.latitude}`,
             lng: `${data.hotel_detail.longitude}`,
           }).toString()}"
@@ -234,4 +242,25 @@
 
     <FooterComponent />
   </div>
+
+  <ModalComponent
+    className="__photoModal"
+    classModalHeight="h-[27rem]"
+    classContentHeight="h-[22rem]"
+  >
+    <div slot="__modal-content" class="__slot-wrapper ">
+      <img class="w-full h-fit" src={ModalImage} alt={modalAlt} />
+    </div>
+  </ModalComponent>
 {/await}
+
+<style>
+  .__shadow {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgb(0, 0, 0) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+</style>

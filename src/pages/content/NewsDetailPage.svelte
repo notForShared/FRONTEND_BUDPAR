@@ -71,21 +71,25 @@
         class="w-full h-[512px] object-cover"
         in:fly={{ y: -20 }}
       />
-      <div class="__content-title absolute bottom-5 px-7 md:px-14 lg:px-32">
-        <div class="__content-subtitle">
-          <h1 class="text-white font-bold text-xl md:text-3xl uppercase">
-            {data.article_detail.title}
-          </h1>
-        </div>
+      <div
+        class="__content-title __shadow absolute w-full bottom-0 px-7 md:px-14 lg:px-32"
+      >
+        <div class="py-5">
+          <div class="__content-subtitle">
+            <h1 class="text-white font-bold text-xl md:text-3xl uppercase">
+              {data.article_detail.title}
+            </h1>
+          </div>
 
-        <div class="flex pb-3">
-          {#each data.article_detail.tags as { tag }}
-            <h3
-              class="text-white uppercase font-bold text-md md:text-xl decoration-[#00d6a1] decoration-2 underline underline-offset-4 pr-2 pt-3"
-            >
-              <span>#{tag}</span>
-            </h3>
-          {/each}
+          <div class="flex pb-3">
+            {#each data.article_detail.tags as { tag }}
+              <h3
+                class="text-white uppercase font-bold text-md md:text-xl decoration-[#00d6a1] decoration-2 underline underline-offset-4 pr-2 pt-3"
+              >
+                <span>#{tag}</span>
+              </h3>
+            {/each}
+          </div>
         </div>
       </div>
     </div>
@@ -106,3 +110,14 @@
     <FooterComponent />
   </div>
 {/await}
+
+<style>
+  .__shadow {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgb(0, 0, 0) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+</style>
