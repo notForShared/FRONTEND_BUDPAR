@@ -17,8 +17,9 @@
     markerTour,
   } from "../../lib/module/map.marker";
 
-  export let destType;
-  export let dest;
+  export let destination;
+
+  // console.log(dest);
 
   let map;
 
@@ -71,10 +72,6 @@
         pop();
       });
 
-      toolbarComponent.$on("map-filter", () => {
-        console.log("show filter");
-      });
-
       return wrapper;
     };
 
@@ -86,21 +83,27 @@
     };
 
     // initialize Marker
-    if (destType === "tours") {
-      let tour = L.marker([dest.lat, dest.lng], { icon: markerTour() });
-      tour.bindPopup("I am a circle.");
+    if (destination.destType === "tours") {
+      let tour = L.marker([destination.lat, destination.lng], {
+        icon: markerTour(),
+      });
+      tour.bindPopup(`Lokasi wisata ${destination.destTitle}`);
       tour.addTo(map);
-      map.flyTo(dest, 10);
-    } else if (destType === "resto") {
-      let resto = L.marker([dest.lat, dest.lng], { icon: markerResto() });
-      resto.bindPopup("I am a circle.");
+      map.flyTo([destination.lat, destination.lng], 10);
+    } else if (destination.destType === "resto") {
+      let resto = L.marker([destination.lat, destination.lng], {
+        icon: markerResto(),
+      });
+      resto.bindPopup(`Lokasi rumah makan ${destination.destTitle}`);
       resto.addTo(map);
-      map.flyTo(dest, 10);
-    } else if (destType === "hotel") {
-      let hotel = L.marker([dest.lat, dest.lng], { icon: markerHotel() });
-      hotel.bindPopup("I am a circle.");
+      map.flyTo([destination.lat, destination.lng], 10);
+    } else if (destination.destType === "hotel") {
+      let hotel = L.marker([destination.lat, destination.lng], {
+        icon: markerHotel(),
+      });
+      hotel.bindPopup(`Lokasi hotel ${destination.destTitle}`);
       hotel.addTo(map);
-      map.flyTo(dest, 10);
+      map.flyTo([destination.lat, destination.lng], 10);
     }
 
     // create direction
@@ -109,9 +112,9 @@
       L.marker([currentCoords.lat, currentCoords.lng]).addTo(map);
 
       let currentPos = `${currentCoords.lng},${currentCoords.lat}`;
-      let destination = `${dest.lng},${dest.lat}`;
+      let targetDest = `${destination.lng},${destination.lat}`;
 
-      getDirection(destination, currentPos).then((direction) => {
+      getDirection(targetDest, currentPos).then((direction) => {
         L.geoJSON(direction.geoJsonPath, {
           style: {
             color: "red",
@@ -123,7 +126,7 @@
             let popupOptions = { maxWidth: 200 };
             layer.bindPopup(
               `
-                <span>Jarak : ${direction.distance.km} Kilometer</span>
+                <span>Jarak : ${direction.distance.value} ${direction.distance.unit}</span>
                 <br>
                 <span>Waktu Tempuh : ${direction.duration.hour} jam ${direction.duration.minute} menit ${direction.duration.second} detik</span>
               `,

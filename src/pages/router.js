@@ -33,9 +33,9 @@ export const routes = {
   }),
 
   // Detail Page
-  "/article-detail": wrap({
-    asyncComponent: () => import('./content/ArticleDetailPage.svelte')
-  }),
+  // "/article-detail": wrap({
+  //   asyncComponent: () => import('./content/ArticleDetailPage.svelte')
+  // }),
 
   "/news-detail": wrap({
     asyncComponent: () => import('./content/NewsDetailPage.svelte')

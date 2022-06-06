@@ -24,10 +24,22 @@ export async function getDirection (dest, currentPosition) {
   if (direction.status === 200) {
     let directionData = await direction.json()
 
+    let unit
+    let value
+    if (directionData.features[0].properties.summary.distance < 1000) {
+      value = Math.floor(directionData.features[0].properties.summary.distance)
+      unit = 'meter'
+    } else {
+      value = Number(directionData.features[0].properties.summary.distance / 1000).toFixed(2)
+      unit = 'kilometer'
+    }
+
+
     return {
       geoJsonPath: directionData.features[0],
       distance: {
-        km: (Number(directionData.features[0].properties.summary.distance) / 1000).toFixed(2)
+        unit: unit,
+        value: value
       },
       duration: {
         hour:  Math.floor(Number(directionData.features[0].properties.summary.duration) / 3600),

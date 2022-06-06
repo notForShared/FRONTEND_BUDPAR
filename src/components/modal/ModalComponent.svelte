@@ -8,6 +8,8 @@
   import CloseIcon from "../../assets/svg/CloseIcon.svelte";
 
   export let className;
+  export let classModalHeight = "h-[22.1rem]";
+  export let classContentHeight = "h-72";
 
   function escapePressListener(event) {
     if (event.keyCode === 27 && get(modalState).show === true) {
@@ -26,7 +28,7 @@
     transition:fade={{ duration: 300 }}
   >
     <div
-      class="__modal-wrapper bg-white w-full md:w-4/6 lg:w-3/6 h-[22.1rem] rounded"
+      class="__modal-wrapper bg-white w-full md:w-4/6 lg:w-3/6 {classModalHeight} rounded"
     >
       <div class="border-b p-5 flex items-center justify-between">
         <slot name="__modal-title" />
@@ -39,7 +41,9 @@
         </a>
       </div>
 
-      <div class="scroll-smooth overflow-y-auto h-72 px-10 py-6">
+      <div
+        class="scroll-smooth overflow-y-auto {classContentHeight} px-10 py-6"
+      >
         <slot name="__modal-content" />
       </div>
     </div>

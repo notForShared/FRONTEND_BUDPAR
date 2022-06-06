@@ -45,4 +45,13 @@
   .__text-shadow {
     text-shadow: 0px 2px 3px #314c49;
   }
+
+  .__card-content {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(0, 0, 0) 100%
+    );
+  }
 </style>

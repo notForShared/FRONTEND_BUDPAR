@@ -1,14 +1,17 @@
 <script>
   import { Tabs, Tab, TabList, TabPanel } from "svelte-tabs";
   import { querystring, link, location } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import Lazy from "svelte-lazy";
 
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
+  import { openModal } from "../../lib/module/modal";
+
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
+  import ModalComponent from "../../components/modal/ModalComponent.svelte";
 
   import HotelCardComponent from "../../components/card/HotelCardComponent.svelte";
   import RestoCardComponent from "../../components/card/RestoCardComponent.svelte";
@@ -39,10 +42,18 @@
   }
 
   let detailData = getDetail();
+  let ModalImage = "";
+  let modalAlt = "";
 
-  function showMainImage(imageUrl) {
-    displayImage = `${imageUrl}`;
+  function openModalImage(link, alt) {
+    ModalImage = link;
+    modalAlt = alt;
+    openModal("__photoModal");
   }
+
+  // function showMainImage(imageUrl) {
+  //   displayImage = `${imageUrl}`;
+  // }
 </script>
 
 <svelte:head>
@@ -77,26 +88,27 @@
 {:then data}
   <div class="__content-page-tour" in:fade={{ duration: 200 }}>
     <div class="pt-36 relative">
-      {#key displayImage}
-        <img
-          src={displayImage}
-          alt={title}
-          class="w-full h-[512px] object-cover"
-          in:fly={{ y: -20 }}
-        />
-      {/key}
-      <div class="__content-title absolute bottom-5 px-7 md:px-14 lg:px-32">
-        <div class="flex pb-3">
-          <h3
-            class="text-white uppercase font-bold text-md md:text-xl decoration-[#00d6a1] decoration-2 underline underline-offset-4"
-          >
-            {data.wisata_detail.distriction.name}
-          </h3>
-        </div>
-        <div class="__content-subtitle">
-          <h1 class="text-white font-bold text-xl md:text-3xl uppercase">
-            {data.wisata_detail.name}
-          </h1>
+      <img
+        src={displayImage}
+        alt={title}
+        class="w-full h-[512px] object-cover"
+      />
+      <div
+        class="__content-title __shadow absolute bottom-0 w-full px-7 md:px-14 lg:px-32"
+      >
+        <div class="py-5">
+          <div class="flex pb-3">
+            <h3
+              class="text-white uppercase font-bold text-md md:text-xl decoration-[#00d6a1] decoration-2 underline underline-offset-4"
+            >
+              {data.wisata_detail.distriction.name}
+            </h3>
+          </div>
+          <div class="__content-subtitle">
+            <h1 class="text-white font-bold text-xl md:text-3xl uppercase">
+              {data.wisata_detail.name}
+            </h1>
+          </div>
         </div>
       </div>
     </div>
@@ -112,7 +124,7 @@
                 class="px-3 duration-300 hover:drop-shadow-lg"
                 href="#!"
                 on:click|preventDefault={() =>
-                  showMainImage(`${ASSETS}/${image}`)}
+                  openModalImage(`${ASSETS}/${image}`, title)}
               >
                 <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                   <img
@@ -128,7 +140,7 @@
               class="px-3 duration-300 hover:drop-shadow-lg"
               href="#!"
               on:click|preventDefault={() =>
-                showMainImage(`${ASSETS}/${data.wisata_detail.thumb}`)}
+                openModalImage(`${ASSETS}/${data.wisata_detail.thumb}`, title)}
             >
               <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                 <img
@@ -166,6 +178,7 @@
         <a
           href="/direction?{new URLSearchParams({
             type: 'tours',
+            title: `${data.wisata_detail.name}`,
             lat: `${data.wisata_detail.latitude}`,
             lng: `${data.wisata_detail.longitude}`,
           }).toString()}"
@@ -214,7 +227,7 @@
                 <h3 class="font-bold">Website</h3>
                 <a
                   class="underline"
-                  href="https://{data.wisata_detail.website}/"
+                  href={data.wisata_detail.website}
                   target="_blank">{data.wisata_detail.website}</a
                 >
               </div>
@@ -297,4 +310,25 @@
 
     <FooterComponent />
   </div>
+
+  <ModalComponent
+    className="__photoModal"
+    classModalHeight="h-[27rem]"
+    classContentHeight="h-[22rem]"
+  >
+    <div slot="__modal-content" class="__slot-wrapper ">
+      <img class="w-full h-fit" src={ModalImage} alt={modalAlt} />
+    </div>
+  </ModalComponent>
 {/await}
+
+<style>
+  .__shadow {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      0deg,
+      rgb(0, 0, 0) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+</style>

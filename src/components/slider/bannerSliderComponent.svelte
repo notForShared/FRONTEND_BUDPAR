@@ -21,7 +21,7 @@
       >
         <div
           slot="dots"
-          class="__slider-dot absolute bottom-10 lg:bottom-32 w-full flex justify-center"
+          class="__slider-dot absolute bottom-5 lg:bottom-5 w-full flex justify-center"
         >
           <div class="flex flex-row">
             {#each Array(pagesCount) as _, pageIndex (pageIndex)}
@@ -30,16 +30,16 @@
                 href="#!"
                 on:click|preventDefault={() => showPage(pageIndex)}
                 class:__active={currentPageIndex === pageIndex}
-                class="rounded-full mx-2 border-2 duration-150 border-teal-400 h-3 w-3 lg:h-5 lg:w-5 hover:bg-teal-400 hover:border-white"
+                class="mx-2 border-[2.5px] duration-150 border-teal-400 h-1 w-6 lg:h-[0.6em] lg:w-10 hover:bg-teal-400 hover:border-white"
               />
             {/each}
           </div>
         </div>
-        {#each bgImage as { id, image, name }}
+        {#each bgImage as { id, banner, name }}
           <img
             key={id}
-            class="w-full object-cover"
-            src={`${ASSETS}/${image}`}
+            class="lg:rounded-[2%] w-full sm:h-[360px] lg:h-[466px] lg:px-6 lg:py-1"
+            src={`${ASSETS}/${banner}`}
             alt={name}
           />
         {/each}
