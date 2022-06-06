@@ -11,6 +11,7 @@
   import BannerLoadAnimationComponent from "../../components/animation/BannerLoadAnimationComponent.svelte";
 
   import MapButtonComponent from "../../components/floatingbutton/MapButtonComponent.svelte";
+  import BannerSliderComponent from "../../components/slider/bannerSliderComponent.svelte";
   import SearchCardComponent from "../../components/searchcard/SearchCardComponent.svelte";
   import EventCardComponent from "../../components/card/EventCardComponent.svelte";
   import TourListComponent from "../../components/tour/TourListComponent.svelte";
@@ -47,12 +48,14 @@
       let sliderData = await slider.json();
       let bannerData = await banner.json();
 
+      console.log(sliderData.data);
+
       return {
         newsData: newsData.data.data,
         activityData: activityData.data.articles,
         popularList: popularList.data,
         slidersImage: sliderData.data,
-        bannerImage: `${ASSETS}/${bannerData.data.banner}`,
+        bannerImage: bannerData.data,
       };
     } else {
       throw new Error("Could not fetch data !");
@@ -230,13 +233,14 @@
   {#await getData}
     <BannerLoadAnimationComponent lgHeight="h-[477px]" />
   {:then data}
-    <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
+    <BannerSliderComponent bgImage={data.bannerImage} />
+    <!-- <Lazy fadeOption={{ delay: 500, duration: 1000 }}>
       <img
         src={`${data.bannerImage}`}
         alt="promotional banner"
         class="w-full h-full lg:h-[477px]"
       />
-    </Lazy>
+    </Lazy> -->
   {/await}
 
   <!-- promotional banner (changeable) -->
