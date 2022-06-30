@@ -29,6 +29,7 @@
     if (detail.status === 200) {
       let detailData = await detail.json();
       displayImage = `${ASSETS}/${detailData.data.food_detail.thumb}`;
+      console.log(detailData.data);
       return detailData.data;
     } else {
       throw new Error("Could not fetchin data !");
@@ -174,7 +175,7 @@
         <a
           href="/direction?{new URLSearchParams({
             type: 'resto',
-            title: `${data.wisata_detail.name}`,
+            title: `${data.food_detail.name}`,
             lat: `${data.food_detail.latitude}`,
             lng: `${data.food_detail.longitude}`,
           }).toString()}"
@@ -236,13 +237,13 @@
     <FooterComponent />
   </div>
 
-  <ModalComponent
-    className="__photoModal"
-    classModalHeight="h-[27rem]"
-    classContentHeight="h-[22rem]"
-  >
-    <div slot="__modal-content" class="__slot-wrapper ">
-      <img class="w-full h-fit" src={ModalImage} alt={modalAlt} />
+  <ModalComponent className="__photoModal">
+    <div slot="__modal-content" class="__slot-wrapper py[4rem]">
+      <img
+        class="object-fit h-screen w-full py-[4rem]"
+        src={ModalImage}
+        alt={modalAlt}
+      />
     </div>
   </ModalComponent>
 {/await}
