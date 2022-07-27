@@ -52,7 +52,7 @@
   <div class="__content-page-news" in:fade={{ duration: 500 }}>
     <div class="pt-36 relative">
       <img
-        src="/assets/images/placeholder/placeholder-bg.jpg"
+        src="/assets/images/placeholder/i-love-tapin.jpg"
         alt="placeholder"
         class="w-full h-[512px] object-cover"
       />

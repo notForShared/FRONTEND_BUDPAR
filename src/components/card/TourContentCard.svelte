@@ -25,7 +25,7 @@
         <img
           src={imageUrl}
           alt={tourTitle}
-          class="h-[350px] rounded-[20px] object-cover drop-shadow-md"
+          class="h-[350px] w-[291px] md:w-auto rounded-[20px] object-cover drop-shadow-md"
         />
       </Lazy>
 

@@ -1,4 +1,5 @@
-export const API = 'https://admin.demopaariwisata.tapinkab.go.id/api/v1'
-export const ASSETS = 'https://admin.demopaariwisata.tapinkab.go.id/storage'
-export const BASEURI = 'https://demopaariwisata.tapinkab.go.id/'
-export const ORS_API = 'https://api.openrouteservice.org/v2'
+export const API = "https://admin.karindangan.tapinkab.go.id/api/v1";
+export const ASSETS = "https://admin.karindangan.tapinkab.go.id/storage";
+export const ADMIN_URI = "https://admin.karindangan.tapinkab.go.id/";
+export const BASEURI = "https://karindangan.tapinkab.go.id/";
+export const ORS_API = "https://api.openrouteservice.org/v2";

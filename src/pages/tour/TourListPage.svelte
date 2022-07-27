@@ -251,7 +251,7 @@
 <div class="__content-page-tour" in:fade={{ duration: 500 }}>
   <div class="pt-36 relative pb-5">
     <img
-      src="/assets/images/placeholder/placeholder-bg.jpg"
+      src="/assets/images/placeholder/i-love-tapin.jpg"
       alt="placeholder"
       class="w-full h-[512px] object-cover"
     />
@@ -330,24 +330,6 @@
                 </a>
               </li>
             {/if}
-            <!-- <li>
-              <a
-                href="#!"
-                on:click|preventDefault={(e) => test(e)}
-                class="block px-4 py-2 text-[#00d6a1] hover:text-white duration-300 hover:bg-[#00d6a1]"
-              >
-                Wisata Religi
-              </a>
-            </li>
-            <li>
-              <a
-                href="#!"
-                on:click|preventDefault={(e) => test(e)}
-                class="block px-4 py-2 text-[#00d6a1] hover:text-white duration-300 hover:bg-[#00d6a1]"
-              >
-                Wisata Buatan
-              </a>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -357,14 +339,19 @@
       in:fade={{ duration: 500 }}
       class="__content-tour-list pt-5 pb-32 md:px-10 lg:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-7 gap-y-11 md:gap-y-14"
     >
-      {#each listData as { thumb, name, address, uuid }}
-        <TourContentCard
-          imageUrl={`${ASSETS}/${thumb}`}
-          tourTitle={name}
-          tourAddress={address}
-          tourDetail={uuid}
-        />
-      {/each}
+      {#if listData.length > 0}
+        {#each listData as { thumb, name, address, uuid }}
+          <TourContentCard
+            imageUrl={`${ASSETS}/${thumb}`}
+            tourTitle={name}
+            tourAddress={address}
+            tourDetail={uuid}
+          />
+        {/each}
+      {:else}
+        <h1>Data wisata masih belum ada</h1>
+        <!-- else content here -->
+      {/if}
     </div>
   {:else if activeTabs === "Penginapan"}
     <div

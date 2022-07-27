@@ -6,12 +6,13 @@
 
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
-  import { openModal } from "../../lib/module/modal";
+  import { openViewer } from "../../lib/module/imageViewer";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
-  import ModalComponent from "../../components/modal/ModalComponent.svelte";
+  // import ModalComponent from "../../components/modal/ModalComponent.svelte";
+  import ImageViewerComponent from "../../components/modal/ImageViewerComponent.svelte";
 
   import HotelCardComponent from "../../components/card/HotelCardComponent.svelte";
   import RestoCardComponent from "../../components/card/RestoCardComponent.svelte";
@@ -45,15 +46,11 @@
   let ModalImage = "";
   let modalAlt = "";
 
-  function openModalImage(link, alt) {
+  function openImageViewer(link, alt) {
     ModalImage = link;
     modalAlt = alt;
-    openModal("__photoModal");
+    openViewer("__photoModal");
   }
-
-  // function showMainImage(imageUrl) {
-  //   displayImage = `${imageUrl}`;
-  // }
 </script>
 
 <svelte:head>
@@ -119,12 +116,12 @@
       <div class="col-span-full">
         <div class="flex">
           {#if data.wisata_detail.tourist_attraction_silders.length > 0}
-            {#each data.wisata_detail.tourist_attraction_silders as { image }}
+            {#each data.wisata_detail.tourist_attraction_silders as { image }, i}
               <a
                 class="px-3 duration-300 hover:drop-shadow-lg"
                 href="#!"
                 on:click|preventDefault={() =>
-                  openModalImage(`${ASSETS}/${image}`, title)}
+                  openImageViewer(`${ASSETS}/${image}`, title)}
               >
                 <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                   <img
@@ -140,7 +137,7 @@
               class="px-3 duration-300 hover:drop-shadow-lg"
               href="#!"
               on:click|preventDefault={() =>
-                openModalImage(`${ASSETS}/${data.wisata_detail.thumb}`, title)}
+                openImageViewer(`${ASSETS}/${data.wisata_detail.thumb}`, title)}
             >
               <Lazy height={96} fadeOption={{ delay: 500, duration: 1000 }}>
                 <img
@@ -311,6 +308,11 @@
     <FooterComponent />
   </div>
 
+<<<<<<< HEAD
+  <ImageViewerComponent className="__photoModal">
+    <div slot="__viewer-content" class="__slot-wrapper ">
+      <img class="w-[60%] m-auto rounded" src={ModalImage} alt={modalAlt} />
+=======
   <ModalComponent className="__photoModal">
     <div slot="__modal-content" class="__slot-wrapper py[4rem]">
       <img
@@ -318,8 +320,9 @@
         src={ModalImage}
         alt={modalAlt}
       />
+>>>>>>> 419f8c13c94b06e9ebdf63554c1157d7dece98d9
     </div>
-  </ModalComponent>
+  </ImageViewerComponent>
 {/await}
 
 <style>
