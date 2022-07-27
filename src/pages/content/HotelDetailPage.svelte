@@ -181,7 +181,7 @@
         <a
           href="/direction?{new URLSearchParams({
             type: 'hotel',
-            title: `${data.wisata_detail.name}`,
+            title: `${data.hotel_detail.name}`,
             lat: `${data.hotel_detail.latitude}`,
             lng: `${data.hotel_detail.longitude}`,
           }).toString()}"
@@ -243,13 +243,13 @@
     <FooterComponent />
   </div>
 
-  <ModalComponent
-    className="__photoModal"
-    classModalHeight="h-[27rem]"
-    classContentHeight="h-[22rem]"
-  >
-    <div slot="__modal-content" class="__slot-wrapper ">
-      <img class="w-full h-fit" src={ModalImage} alt={modalAlt} />
+  <ModalComponent className="__photoModal">
+    <div slot="__modal-content" class="__slot-wrapper py[4rem]">
+      <img
+        class="object-cover h-screen w-full py-[4rem]"
+        src={ModalImage}
+        alt={modalAlt}
+      />
     </div>
   </ModalComponent>
 {/await}

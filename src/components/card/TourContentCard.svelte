@@ -25,7 +25,11 @@
         <img
           src={imageUrl}
           alt={tourTitle}
+<<<<<<< HEAD
           class="h-[350px] w-[291px] md:w-auto rounded-[20px] object-cover drop-shadow-md"
+=======
+          class="h-[350px] rounded-[20px] object-cover drop-shadow-md"
+>>>>>>> 419f8c13c94b06e9ebdf63554c1157d7dece98d9
         />
       </Lazy>
 

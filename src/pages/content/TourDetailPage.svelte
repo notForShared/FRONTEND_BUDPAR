@@ -308,9 +308,19 @@
     <FooterComponent />
   </div>
 
+<<<<<<< HEAD
   <ImageViewerComponent className="__photoModal">
     <div slot="__viewer-content" class="__slot-wrapper ">
       <img class="w-[60%] m-auto rounded" src={ModalImage} alt={modalAlt} />
+=======
+  <ModalComponent className="__photoModal">
+    <div slot="__modal-content" class="__slot-wrapper py[4rem]">
+      <img
+        class="object-fit h-screen w-full py-[4rem]"
+        src={ModalImage}
+        alt={modalAlt}
+      />
+>>>>>>> 419f8c13c94b06e9ebdf63554c1157d7dece98d9
     </div>
   </ImageViewerComponent>
 {/await}

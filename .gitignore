@@ -10,4 +10,9 @@ env.*
 
 .yarn
 .pnp.*
+<<<<<<< HEAD
+=======
+
+.yarn
+>>>>>>> 419f8c13c94b06e9ebdf63554c1157d7dece98d9
 .yarnrc.*
