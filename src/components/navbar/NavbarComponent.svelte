@@ -1,6 +1,7 @@
 <script>
   import { link } from "svelte-spa-router";
 
+  import { ADMIN_URI } from "../../lib/config";
   import { openModal } from "../../lib/module/modal";
 
   import SearchDarkIcon from "../../assets/svg/SearchDarkIcon.svelte";
@@ -50,7 +51,7 @@
     </a>
     <a
       class="flex items-center px-4 py-3 text-white font-bold rounded-md bg-[#00d6a1]"
-      href="https://admin.demopaariwisata.tapinkab.go.id/"
+      href={ADMIN_URI}
       target="_blank"
     >
       <LoginIcon />

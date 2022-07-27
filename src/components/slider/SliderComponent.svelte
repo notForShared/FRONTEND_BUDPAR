@@ -13,7 +13,7 @@
         autoplayDuration={2000}
         arrows={false}
         pauseOnFocus={true}
-        swiping={true}
+        swiping={false}
         infinite={true}
         let:currentPageIndex
         let:pagesCount

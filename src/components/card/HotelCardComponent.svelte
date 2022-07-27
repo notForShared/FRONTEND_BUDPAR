@@ -24,11 +24,13 @@
         <img
           src={imageUrl}
           alt={hotelTitle}
-          class="w-[291px] h-[350px] rounded-[20px] drop-shadow-md"
+          class="h-[350px] w-[291px] md:w-auto rounded-[20px] drop-shadow-md"
         />
       </Lazy>
 
-      <div class="__card-content absolute bottom-0 px-5 py-5 text-white">
+      <div
+        class="__card-content absolute bottom-0 w-full rounded-b-[20px] px-5 py-5 text-white"
+      >
         <h3 class="text-xl font-bold capitalize pb-2 __text-shadow">
           {hotelTitle}
         </h3>
