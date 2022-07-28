@@ -48,8 +48,6 @@
       let sliderData = await slider.json();
       let bannerData = await banner.json();
 
-      console.log(popularList.data);
-
       return {
         newsData: newsData.data.data,
         activityData: activityData.data.articles,

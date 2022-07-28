@@ -21,7 +21,7 @@
 {#if $imageViewerState.viewer === className}
   <div
     class="__modal {className} {$imageViewerState.show
-      ? 'block'
+      ? 'flex'
       : 'hidden'} justify-center items-center fixed w-full h-screen top-0 bg-black/[.7]"
     transition:fade={{ duration: 300 }}
     on:click={closeViewer}
