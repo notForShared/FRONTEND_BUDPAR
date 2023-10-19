@@ -11,7 +11,6 @@
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
-  // import ModalComponent from "../../components/modal/ModalComponent.svelte";
   import ImageViewerComponent from "../../components/modal/ImageViewerComponent.svelte";
 
   import HotelCardComponent from "../../components/card/HotelCardComponent.svelte";
@@ -309,7 +308,7 @@
   </div>
 
   <ImageViewerComponent className="__photoModal">
-    <div slot="__viewer-content" class="__slot-wrapper ">
+    <div slot="__viewer-content" class="__slot-wrapper">
       <img class="w-[60%] m-auto rounded" src={ModalImage} alt={modalAlt} />
     </div>
   </ImageViewerComponent>

@@ -26,6 +26,10 @@
   let categories = [];
   let tourList = [];
 
+  // let videoIds = [];
+  // let apiKey = "AIzaSyCMRJQ9T-S-PO2GvgXOhqHsJJfUG8fA8Qw";
+  // let channelId = "UCPhlJJLCufjSKduAJqwOS0g";
+
   async function fetchData() {
     let news = await fetch(`${API}/articles?paginate=3`);
     let activity = await fetch(
@@ -111,7 +115,17 @@
     categoryElement.blur();
   }
 
+  // async function fetchLatestVideos() {
+  //   const response = await fetch(
+  //     `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=id&order=date&maxResults=3&type=video`
+  //   );
+  //   const data = await response.json();
+  //   console.log(data);
+  //   // videoIds = data.items.map((item) => item.id.videoId);
+  // }
+
   onMount(() => {
+    // fetchLatestVideos();
     getInitCategory();
   });
 </script>
@@ -164,6 +178,7 @@
             <span class="__dd-text"> Kategori Wisata </span>
             <ChevronDownIcon />
           </button>
+          <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
           <div
             tabindex="0"
             class="__dropdown border-2 bg-slate-100 invisible border-transparent rounded w-60 absolute right-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:outline-none group-focus-within:opacity-100 group-focus-within:translate-y-4"
@@ -314,6 +329,55 @@
               </div>
             {/each}
           {/await}
+        </div>
+      </div>
+    </div>
+
+    <div class="content __activity">
+      <div class="__wrapper flex justify-between items-center">
+        <div class="__section-title">
+          <h1 class="font-bold text-3xl pb-2">Youtube Highlight</h1>
+          <h4 class="capitalize text-2xl font-semibold">disbudpar</h4>
+        </div>
+      </div>
+
+      <div class="pt-10 pb-32">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x gap-y-20"
+          in:fade={{ duration: 200 }}
+        >
+          <iframe
+            height="300"
+            width="500"
+            class="rounded-lg"
+            src="https://www.youtube.com/embed/fvhj8UfPsjY?si=slpXPhx38TYCCyCD"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+
+          <iframe
+            height="300"
+            width="500"
+            class="rounded-lg"
+            src="https://www.youtube.com/embed/_WmZAPCXfjc?si=2i26k4AWQLJliaH1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+
+          <iframe
+            height="300"
+            width="500"
+            class="rounded-lg"
+            src="https://www.youtube.com/embed/iM-FC0y1Pco?si=Wa4sry5hZ7SE3q1O"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
         </div>
       </div>
     </div>
