@@ -5,6 +5,8 @@
   import MapPinHollowIcon from "../../assets/svg/MapPinHollowIcon.svelte";
   import SearchLightIcon from "../../assets/svg/SearchLightIcon.svelte";
 
+  import { openModal } from "../../lib/module/modal";
+
   let getPopularList = fetchPopularList();
   let searchQuery = "";
 
@@ -27,14 +29,14 @@
     }
   }
 
-  function enterPress(event) {
-    if (event.keyCode === 13) {
-      if (searchQuery || searchQuery !== "" || searchQuery) {
-        let query = new URLSearchParams({ q: searchQuery });
-        push(`/search?${query.toString()}`);
-      }
-    }
-  }
+  // function enterPress(event) {
+  //   if (event.keyCode === 13) {
+  //     if (searchQuery || searchQuery !== "" || searchQuery) {
+  //       let query = new URLSearchParams({ q: searchQuery });
+  //       push(`/search?${query.toString()}`);
+  //     }
+  //   }
+  // }
 </script>
 
 <div class="__search-card flex justify-center w-full py-10 lg:absolute lg:pb-5">
@@ -48,12 +50,21 @@
       >
     </div>
     <div class="__search-bar w-full flex items-center flex-col md:flex-row">
-      <input
+      <!-- <input
         class="border-2 bg-[#f5f5f5] border-[#00d6a1] rounded-lg h-10 w-11/12 px-2"
         type="text"
         bind:value={searchQuery}
         on:keypress={enterPress}
+        on:focus={() => openModal("__navbarSearch")}
+      /> -->
+
+      <input
+        class="border-2 bg-[#f5f5f5] border-[#00d6a1] rounded-lg h-10 w-11/12 px-2"
+        type="text"
+        placeholder="Apa yang mau anda cari ?"
+        on:focus={() => openModal("__navbarSearch")}
       />
+
       <button
         class="flex items-center ml-2 mt-5 md:mt-0 px-2 py-2 text-white font-bold rounded-md bg-[#00d6a1]"
         on:click={gotoContent}

@@ -5,12 +5,14 @@
 
   import { API, ASSETS, BASEURI } from "../../lib/config";
 
-  import { openModal } from "../../lib/module/modal";
+  // import { openModal } from "../../lib/module/modal";
+  import { openViewer } from "../../lib/module/imageViewer";
 
   import LoadingCircleAnimationComponent from "../../components/animation/LoadingCircleAnimationComponent.svelte";
   import FacilityComponent from "../../components/facility/FacilityComponent.svelte";
   import MapCardComponent from "../../components/card/MapCardComponent.svelte";
-  import ModalComponent from "../../components/modal/ModalComponent.svelte";
+  // import ModalComponent from "../../components/modal/ModalComponent.svelte";
+  import ImageViewerComponent from "../../components/modal/ImageViewerComponent.svelte";
 
   import FooterComponent from "../../components/footer/FooterComponent.svelte";
 
@@ -44,12 +46,8 @@
   function openModalImage(link, alt) {
     ModalImage = link;
     modalAlt = alt;
-    openModal("__photoModal");
+    openViewer("__photoModalHotel");
   }
-
-  // function showMainImage(imageUrl) {
-  //   displayImage = `${imageUrl}`;
-  // }
 </script>
 
 <svelte:head>
@@ -243,7 +241,13 @@
     <FooterComponent />
   </div>
 
-  <ModalComponent className="__photoModal">
+  <ImageViewerComponent className="__photoModalHotel">
+    <div slot="__viewer-content" class="__slot-wrapper">
+      <img class="w-[60%] m-auto rounded" src={ModalImage} alt={modalAlt} />
+    </div>
+  </ImageViewerComponent>
+
+  <!-- <ModalComponent className="__photoModal">
     <div slot="__modal-content" class="__slot-wrapper py[4rem]">
       <img
         class="object-cover h-screen w-full py-[4rem]"
@@ -251,5 +255,5 @@
         alt={modalAlt}
       />
     </div>
-  </ModalComponent>
+  </ModalComponent> -->
 {/await}
