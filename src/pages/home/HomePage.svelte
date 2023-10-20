@@ -26,10 +26,6 @@
   let categories = [];
   let tourList = [];
 
-  // let videoIds = [];
-  // let apiKey = "AIzaSyCMRJQ9T-S-PO2GvgXOhqHsJJfUG8fA8Qw";
-  // let channelId = "UCPhlJJLCufjSKduAJqwOS0g";
-
   async function fetchData() {
     let news = await fetch(`${API}/articles?paginate=3`);
     let activity = await fetch(
@@ -115,17 +111,7 @@
     categoryElement.blur();
   }
 
-  // async function fetchLatestVideos() {
-  //   const response = await fetch(
-  //     `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=id&order=date&maxResults=3&type=video`
-  //   );
-  //   const data = await response.json();
-  //   console.log(data);
-  //   // videoIds = data.items.map((item) => item.id.videoId);
-  // }
-
   onMount(() => {
-    // fetchLatestVideos();
     getInitCategory();
   });
 </script>
